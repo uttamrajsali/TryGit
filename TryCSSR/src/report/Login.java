@@ -1,5 +1,6 @@
 package report;
 
+import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
@@ -12,15 +13,17 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import report.UserInfo;
 
 
 public class Login {
 
 	public static WebDriver driver;
-	public static String url = "https://sun-qa-ncp03clone.engca.bevocal.com:8443/np";
-	public static String username = "yujie_xu";
-	public static String password = "nuance1";
+	public static String url = null;
+	public static String username = null;
+	public static String password = null;
 	public static String browser = null;
+	public static UserInfo user;
 	public static final String projectPath = System.getProperty("user.dir");
 
 	private static final String userName = "id('username')";
@@ -29,59 +32,31 @@ public class Login {
 	private static final String odipath = "/html/body/div[5]/div[2]/div/div[2]/ul/li[4]/a"; 
 	private static final String reportspath="/html/body/div[5]/div[2]/div/div[2]/ul/li[4]/ul/li[2]/a";
 	private static final String cssrpath="/html/body/div[5]/div[2]/div/div[2]/ul/li[4]/ul/li[2]/ul/li/a";
-	public static void execute() {
+	public static  void execute() {
 		try
 		{
 			createNewWebDriver();
+			
+			getuserinfo();
 			openURL(driver);
 			WebElement usrname = findElement(driver, userName);
 			WebElement pwd = findElement(driver, passwordXPath);
 			WebElement submit = findElement(driver, submitXPath);
+			//filling the username and password fields
 			usrname.sendKeys(username);
 			pwd.sendKeys(password);
 			submit.submit();
-			/*WebElement odi= (new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(odipath)));
-			odi.click();
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-			WebElement report=findElement(driver, reportspath);
-			report.click();
-			WebElement cssr= (new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(cssrpath)));
-			cssr.click();
-			driver.findElement(By.id("PARAM_START_DATE")).clear();
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		    
-			driver.findElement(By.id("PARAM_START_DATE")).sendKeys("09/11/2013");
-//driver.findElement(By.cssSelector("#PARAM_START_DATE")).sendKeys("09/11/2013");
-			driver.findElement(By.id("PARAM_END_DATE")).clear();
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		    
-			driver.findElement(By.id("PARAM_END_DATE")).sendKeys("09/11/2013");
-			//driver.findElement(By.id("date_range")).click();
-		    //new Select(driver.findElement(By.id("date_range"))).selectByVisibleText("Yesterday");
-		    driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-		    driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		    
-		    driver.findElement(By.id("iExport")).click();
-		    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		    //driver.findElement(By.xpath("/html/body/div[12]/div/ul/li/a")).click();
-		    driver.findElement(By.linkText("Export to PDF")).click();
-		    
-		  // java.lang.Runtime.getRuntime().exec("autoit/test3.exe"); //when i use ie webdriver it is not able to invoke test2.exe
-		  */
+			
 		}
 		catch (Exception e)
 		{
 			System.out.print("trace: ");
 			e.printStackTrace();
 		}
-		/*finally
-		{
-			driver.manage().timeouts().implicitlyWait(30000000, TimeUnit.SECONDS);	
-			//driver.quit();
-		}*/
+		
 	}
 
-	
+	//selecting the webdriver
 	public static void createNewWebDriver() {
 		switch(browser.toLowerCase()){
 		case "chrome":
@@ -100,9 +75,10 @@ public class Login {
 		
 		}
 		
+		
 	}
 
-
+//Method to find the Element using xpath
 	private static  WebElement findElement(WebDriver driver, String xpath) {
 		try
 		{
@@ -114,9 +90,33 @@ public class Login {
 			throw new NoSuchElementException("no such element");
 		}
 	}
-
+//opening the webpage
 	private static void openURL(WebDriver driver) {
 		driver.get(url);
+		
+	}
+	public static void getuserinfo() 
+	{
+		try {
+			user =  new UserInfo("userinfo.xml");
+			}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		url=user.getProperties("weburl");		
+		username = user.getProperties("username");		
+		password = user.getProperties("password");
+		
+		if (username ==null || username.isEmpty())
+		{
+			throw new NullPointerException("null username found");
+		}
+		else if (password == null|| password.isEmpty())
+		{
+			throw new NullPointerException("null password found");
+		}
+		
 		
 	}
 
