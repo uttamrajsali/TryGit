@@ -13,6 +13,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import report.WriteXmlFile;
+
 import report.UserInfo;
 
 
@@ -25,18 +27,19 @@ public class Login {
 	public static String browser = null;
 	public static UserInfo user;
 	public static final String projectPath = System.getProperty("user.dir");
+	public static WriteXmlFile ReportFile;
 
 	private static final String userName = "id('username')";
 	private static final String passwordXPath = "//*[@id='password']";
 	private static final String submitXPath = "html/body/div[2]/form/div/table/tbody/tr[4]/td[2]/div/input[3]";
-	private static final String odipath = "/html/body/div[5]/div[2]/div/div[2]/ul/li[4]/a"; 
-	private static final String reportspath="/html/body/div[5]/div[2]/div/div[2]/ul/li[4]/ul/li[2]/a";
-	private static final String cssrpath="/html/body/div[5]/div[2]/div/div[2]/ul/li[4]/ul/li[2]/ul/li/a";
+	private static final String domainname = "US_AIRWAYS";
 	public static  void execute() {
 		try
 		{
 			createNewWebDriver();
-			
+			ReportFile = new WriteXmlFile();
+			ReportFile.addTestCase("Test", true);
+			ReportFile.WriteToFile();
 			getuserinfo();
 			openURL(driver);
 			WebElement usrname = findElement(driver, userName);
@@ -46,6 +49,7 @@ public class Login {
 			usrname.sendKeys(username);
 			pwd.sendKeys(password);
 			submit.submit();
+			choosedomain(domainname);
 			
 		}
 		catch (Exception e)
@@ -76,6 +80,12 @@ public class Login {
 		}
 		
 		
+	}
+	public static void choosedomain(String domain)
+	{
+		WebElement domainlist = driver.findElement(By.id("dropdown"));
+		Select select = new Select(domainlist);
+		select.selectByValue(domain);
 	}
 
 //Method to find the Element using xpath

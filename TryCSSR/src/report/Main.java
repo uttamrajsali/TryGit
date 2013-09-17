@@ -10,7 +10,10 @@ public class Main {
 		{
 			parseCommandLine(args);
 			Login.execute();
+			//GenerateHtml.execute();
 			SelectTimeRange.entertime();
+			
+			
 		}
 		catch(Exception e)
 		{
@@ -18,7 +21,7 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
-
+	
 	private static void parseCommandLine(String[] args) {
 		if(args.equals(null) || args.length ==  0){
 			throw new NullPointerException("Missing Command line argument");
