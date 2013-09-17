@@ -27,7 +27,8 @@ public class SelectTimeRange extends Login{
 	private static String Element5 = "Application";
 	private static String Element6 = "DNIS";
 	private static String Element7 = "Language";
-	public static void entertime() {
+	public static WriteXmlFile ReportFile;
+	public static void gotoreports() {
 	try 
 	{
 	//wait for page to load after sign in
@@ -39,15 +40,6 @@ public class SelectTimeRange extends Login{
 	report.click();
 	WebElement cssr= (new WebDriverWait(driver,10)).until(ExpectedConditions.elementToBeClickable(By.xpath(cssrpath)));
 	cssr.click();
-	//driver.findElement(By.id("PARAM_START_DATE")).clear();
-	//to handle the alert that pops up 
-	//Alert alert = driver.switchTo().alert();
-	//alert.dismiss();
-//	driver.findElement(By.id("PARAM_START_DATE")).sendKeys("value");
-	//driver.findElement(By.id("PARAM_END_DATE")).clear();
-	//alert.dismiss();
-//	driver.findElement(By.id("PARAM_END_DATE")).sendKeys("value");
-//	driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	isElementpresent(Element1, By.id("date_range_label"));
 	isElementpresent(Element2, By.id("PARAM_START_DATE_label"));
@@ -56,74 +48,32 @@ public class SelectTimeRange extends Login{
 	isElementpresent(Element5, By.id("PARAM_APP_ID_label"));
 	isElementpresent(Element6, By.id("PARAM_DNIS_label"));
 	isElementpresent(Element7, By.id("PARAM_LOCALE_label"));
-	
-	//isElementpresent(By.id(""));
-	//isElementpresent(By.id(""));
-	//isElementpresent(By.id(""));
-	//isElementpresent(By.id(""));
-	
-	//isElementpresent(By.id(""));
-	//isElementpresent(By.id(""));
-	
-	
-	/*if(driver.findElement(By.id("date_range_label"))!= null){
-		System.out.println("Element1 is Present");
-		}else{
-		System.out.println("Element is Absent");
-		}
-	if(driver.findElement(By.id("PARAM_START_DATE_label"))!= null){
-		System.out.println("Element2 is Present");
-		}else{
-		System.out.println("Element is Absent");
-		}
-	if(driver.findElement(By.id("PARAM_END_DATE_label"))!= null){
-		System.out.println("Element3 is Present");
-		}else{
-		System.out.println("Element is Absent");
-		}
-	if(driver.findElement(By.id("PARAM_TIME_ZONE_label"))!= null){
-		System.out.println("Element4 is Present");
-		}else{
-		System.out.println("Element is Absent");
-		}
-	if(driver.findElement(By.id("PARAM_APP_ID_label"))!= null){
-		System.out.println("Element5 is Present");
-		}else{
-		System.out.println("Element is Absent");
-		}
-	if(driver.findElement(By.id("PARAM_DNIS_label"))!= null){
-		System.out.println("Element6 is Present");
-		}else{
-		System.out.println("Element is Absent");
-		}
-	if(driver.findElement(By.id("PARAM_LOCALE_label"))!= null){
-		System.out.println("Element7 is Present");
-		}else{
-		System.out.println("Element is Absent");
-		}
-		*/
-	//driver.findElement(By.xpath()).click();
+	driver.findElement(By.id("PARAM_START_DATE")).sendKeys("value");
+	driver.findElement(By.id("PARAM_END_DATE")).sendKeys("value");
+	WebElement DNISvalue = driver.findElement(By.id("PARAM_DNIS"));
+	Select select = new Select(DNISvalue);
+	select.deselectAll();
+	select.selectByValue("2404953077");
+	driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+	WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+	//WebElement tag=page.findElement(By.xpath("//*[text()='Call Statistics Summary Report']"));
+	WebElement rangeStart=page.findElement(By.xpath("//*[contains(text(),'9/16/2013')]"));
+	WebElement rangeEnd=page.findElement(By.xpath("//*[contains(text(),'9/17/2013')]"));
 
-	driver.switchTo().frame("reportContent");
-	
-	/*try {
-	      assertTrue(isElementPresent(By.xpath("//span[contains(text(),'Call')]")));
-	    } catch (Error e) {
-	    e.printStackTrace();
-	    }*/
-	
-	/*if(driver.findElement(By.xpath("//span[contains(text(),'Call')]"))!= null){
-		System.out.println("Element8 is Present");
-		}else{
-		System.out.println("Element is Absent");
-		}
-    /*try {
-        Assert.assertTrue(isElementPresent(By.xpath("id('CrystalViewercridreportpage')/x:div[65]/x:div/x:div/x:span")));
-        System.out.println("Element8 is Present");
-      } catch (Error e) {
-       e.printStackTrace();
-      }*/
-
+	WebElement tag=page.findElement(By.xpath("//*[contains(text(),'DNIS')]"));
+	if(rangeStart!=null&&rangeEnd!=null)
+	{
+	System.out.println("Report is for default range");
+	}
+	if(tag != null)
+	{
+	System.out.println("DNIS:2404953077 filter is present");
+	}
+	ReportFile = new WriteXmlFile();
+	ReportFile.addTestCase("Test to verify labeling ", true);
+	ReportFile.WriteToFile();
 	}
 	catch (Exception e)
 	{

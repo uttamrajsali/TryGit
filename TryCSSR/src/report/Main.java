@@ -11,7 +11,8 @@ public class Main {
 			parseCommandLine(args);
 			Login.execute();
 			//GenerateHtml.execute();
-			SelectTimeRange.entertime();
+			SelectTimeRange.gotoreports();
+		
 			
 			
 		}
