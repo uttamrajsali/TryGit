@@ -9,9 +9,11 @@ public class Main {
 		try
 		{
 			parseCommandLine(args);
-			Login.execute();
+			//Login s = new Login();
+			//s.execute();
 			//GenerateHtml.execute();
-			SelectTimeRange.gotoreports();
+			SelectTimeRange x = new SelectTimeRange();
+			x.gotoreports();
 		
 			
 			

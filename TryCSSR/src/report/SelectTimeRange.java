@@ -28,7 +28,10 @@ public class SelectTimeRange extends Login{
 	private static String Element6 = "DNIS";
 	private static String Element7 = "Language";
 	public static WriteXmlFile ReportFile;
-	public static void gotoreports() {
+	public SelectTimeRange(){
+	execute();
+	}
+	public void gotoreports() {
 	try 
 	{
 	//wait for page to load after sign in
@@ -87,7 +90,7 @@ public class SelectTimeRange extends Login{
 	}
 	
 }
-	private static void isElementpresent(String name, By by){
+	private void isElementpresent(String name, By by){
 		try
 		{
 		if(driver.findElement(by)!= null)

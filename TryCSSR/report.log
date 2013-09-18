@@ -350,3 +350,31 @@
 2013-09-17 15:22:36 INFO  DefaultHttpClient:730 - Retrying request
 2013-09-17 15:23:04 INFO  Main:58 - put string Test to verify labeling 
 
+2013-09-17 16:26:15 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:26:15 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:27:17 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:27:17 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:29:23 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:29:23 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:31:10 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:31:10 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:43:15 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:43:15 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:43:20 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:43:20 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:43:53 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:43:53 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:44:20 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:44:20 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:44:40 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:44:40 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:55:10 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:55:10 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:55:29 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:55:29 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:58:06 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:58:06 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:59:01 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-17 16:59:01 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-17 16:59:26 INFO  Main:58 - put string Test to verify labeling 
+

@@ -33,18 +33,22 @@ public class Login {
 	private static final String passwordXPath = "//*[@id='password']";
 	private static final String submitXPath = "html/body/div[2]/form/div/table/tbody/tr[4]/td[2]/div/input[3]";
 	private static final String domainname = "US_AIRWAYS";
-	public static  void execute() {
+	
+	public Login() {
+		createNewWebDriver();
+	}
+	public  void execute() {
 		try
 		{
-			createNewWebDriver();
 			//ReportFile = new WriteXmlFile();
 			//ReportFile.addTestCase("Test", true);
 			//ReportFile.WriteToFile();
+			//setting user details like url,name,password
 			getuserinfo();
 			openURL(driver);
-			WebElement usrname = findElement(driver, userName);
-			WebElement pwd = findElement(driver, passwordXPath);
-			WebElement submit = findElement(driver, submitXPath);
+			WebElement usrname = driver.findElement(By.xpath(userName));
+			WebElement pwd = driver.findElement(By.xpath(passwordXPath));
+			WebElement submit =driver.findElement(By.xpath(submitXPath));
 			//filling the username and password fields
 			usrname.sendKeys(username);
 			pwd.sendKeys(password);
@@ -61,7 +65,7 @@ public class Login {
 	}
 
 	//selecting the webdriver
-	public static void createNewWebDriver() {
+	public void createNewWebDriver() {
 		switch(browser.toLowerCase()){
 		case "chrome":
         	System.setProperty("webdriver.chrome.driver", projectPath+"\\chromedriver\\chromedriver.exe");
@@ -78,10 +82,9 @@ public class Login {
     		break;
 		
 		}
-		
-		
 	}
-	public static void choosedomain(String domain)
+	
+	public void choosedomain(String domain)
 	{
 		WebElement domainlist = driver.findElement(By.id("dropdown"));
 		Select select = new Select(domainlist);
@@ -89,7 +92,7 @@ public class Login {
 	}
 
 //Method to find the Element using xpath
-	private static  WebElement findElement(WebDriver driver, String xpath) {
+	/*private static  WebElement findElement(WebDriver driver, String xpath) {
 		try
 		{
 			WebElement element = driver.findElement(By.xpath(xpath));
@@ -99,13 +102,13 @@ public class Login {
 		{
 			throw new NoSuchElementException("no such element");
 		}
-	}
+	}*/
 //opening the webpage
-	private static void openURL(WebDriver driver) {
+	private void openURL(WebDriver driver) {
 		driver.get(url);
 		
 	}
-	public static void getuserinfo() 
+	public void getuserinfo() 
 	{
 		try {
 			user =  new UserInfo("userinfo.xml");
