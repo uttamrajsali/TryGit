@@ -13,10 +13,9 @@ public class Main {
 			//s.execute();
 			//GenerateHtml.execute();
 			SelectTimeRange x = new SelectTimeRange();
-			x.gotoreports();
-		
-			
-			
+			x.findthelables();
+			x.search();
+			//x.dnisfilter();
 		}
 		catch(Exception e)
 		{
