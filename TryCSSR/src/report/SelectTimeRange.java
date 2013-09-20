@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import net.sourceforge.htmlunit.corejs.javascript.tools.debugger.Main;
@@ -75,7 +76,7 @@ public class SelectTimeRange extends Login{
 		e.printStackTrace();
 	}
 	}
-	//Method for finding the lables of filters
+	//odi.618 Method for finding the lables of filters 
 	public void findthelables(){
 	String dmname="US_AIRWAYS";
 	gotoreports(dmname);
@@ -95,7 +96,7 @@ public class SelectTimeRange extends Login{
 		e.printStackTrace();
 	}
 	}
-	
+	//odi.614
 	public void search(){
 	String dmName="US_AIRWAYS";
 	gotoreports(dmName);
@@ -124,7 +125,7 @@ public class SelectTimeRange extends Login{
 		e.printStackTrace();
 	}
 }
-	//Method for DNIS value search
+	//odi.623.Method for DNIS value search
 	public void dnisfilter(){
 	String dmName="US_AIRWAYS";
 	gotoreports(dmName);
@@ -148,17 +149,125 @@ public class SelectTimeRange extends Login{
 	}
 	//driver.quit();
 }
+	//odi.620 Method that the report footer a/b filter should match all as it specified in left side panel
 	public void abfilter(){
 		String dmName="METROPCS";
 		gotoreports(dmName);
 		try{
+			//WebElement ABvalue = driver.findElement(By.id("PARAM_APP_VARIANT_ID"));
+			//Select select = new Select(ABvalue);
+			//select.deselectAll();
+			//select.selectByValue("NVP 5.0.0-NDF 6.1.0-0.0.0.1");
+			//NVP 5.2.1-NDF 6.1.0-3.1.0.0rc1, NVP 5.2.1-NDF 6.1.0-3.1.0.0rc2, NVP 5.2.1-NDF 6.1.0-3.1.0.0rc2a, NVP 5.2.1-NDF 6.
+			driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+			WebElement tag=page.findElement(By.xpath("//*[contains(text(),'A/B')]"));
+		
+			if(tag != null)
+			{
+			System.out.println("A/B Combo ID: NVP 5.0.0-NDF 6.1.0-0.0.0.1 filter is present");
+			}
+		}catch (Exception e)
+			{
+				System.out.print("trace: ");
+				e.printStackTrace();
+			}
+	}
+	public void pickAvalidDate (){
+		driver.findElement(By.id("PARAM_START_DATE")).clear();
+		Alert alert = driver.switchTo().alert();
+		alert.dismiss();
+		driver.findElement(By.id("PARAM_START_DATE")).sendKeys("08/01/2013");
+		driver.findElement(By.id("PARAM_END_DATE")).clear();
+		alert.dismiss();
+		driver.findElement(By.id("PARAM_END_DATE")).sendKeys("09/01/2013");
+		
+		driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+	}
+	//generate cssr with valid filters and check
+	public void cssrNumbers (){
+		String dmName="US_AIRWAYS";
+		gotoreports(dmName);
+		pickAvalidDate();
+		try{
+			/*driver.findElement(By.id("PARAM_START_DATE")).clear();
+			Alert alert = driver.switchTo().alert();
+			alert.dismiss();
+			driver.findElement(By.id("PARAM_START_DATE")).sendKeys("08/01/2013");
+			driver.findElement(By.id("PARAM_END_DATE")).clear();
+			alert.dismiss();
+			driver.findElement(By.id("PARAM_END_DATE")).sendKeys("09/01/2013");
 			
-			
-		}catch(Exception e)
-		{
+			driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+			*/
+			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+			List<WebElement> check= page.findElements(By.tagName("span"));
+			for(int i=0;i<check.size();i++)
+			{
+				String k= (check.get(i).getText());
+				String[] kx = k.split("\\s");
+				if (k.equals("Call Volume")){
+					System.out.println(kx[1]+kx[0]);
+					String j = (check.get(i+1).getText());
+					String[] jx = j.split("\\s");
+					System.out.println(jx[1]+jx[0]);
+					int jc= Integer.parseInt(jx[1]);
+					String  Tvalue= (check.get(i+3).getText());
+					String[] Tvalues= Tvalue.split("\\s");
+					int TvaluesConvert=Integer.parseInt(Tvalues[1]);
+					String PeakHourCallValue = (check.get(i+21).getText());
+					String[] PeakHourCallValues= PeakHourCallValue.split("\\s");
+					int PeakHourCallValuesConvert=Integer.parseInt(PeakHourCallValues[1]);
+					String AverageCallValue= (check.get(i+11).getText());
+					String[] AverageCallValues= AverageCallValue.split("\\s");
+					double AverageCallValuesConvert= Double.parseDouble(AverageCallValues[1]);
+					String CallDurationValue= (check.get(i+9).getText());
+					String[] CallDurationValues= CallDurationValue.split("\\s");
+					double CallDurationValuesConvert=Double.parseDouble(CallDurationValues[1]);
+					double x= CallDurationValuesConvert/jc;
+					double roundOff =Math.round(x*100.0)/100.0;
+					System.out.println(jc);
+					System.out.println(TvaluesConvert);
+					System.out.println(PeakHourCallValuesConvert);
+					System.out.println(AverageCallValuesConvert);
+					System.out.println(CallDurationValuesConvert);
+					System.out.println(x);
+					System.out.println(roundOff);
+					if (jc >= TvaluesConvert){
+						logger.info("the call volume is greater than the Transfer");
+						System.out.println("True");
+					} if(PeakHourCallValuesConvert <=jc ) {
+						System.out.println("this is second true");
+					}
+					
+					/*if (jx[1].equals("11")){
+						System.out.println(jx[1]+jx[0]);
+					}*/
+					
+					
+				}else if (k.equals(" 11")){
+					//System.out.println(jx[1]+jx[0]);
+				}
+				//String k= (check.get(i).getText()); // changes string to int
+				//int j= Integer.parseInt(check.get(i+2).getText());
+					//if (k >= j ){
+				//		System.out.println("true");
+					//}	 
+					
+						  
+				//}
+			}
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			driver.quit();	
 			
 		}
-	}
+	
+	
 	//Method that I invoke in findlablesfilter() function
 	private void isElementpresent(String name, By by){
 		try
