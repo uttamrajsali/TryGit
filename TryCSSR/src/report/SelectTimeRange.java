@@ -78,6 +78,7 @@ public class SelectTimeRange extends Login{
 		e.printStackTrace();
 	}
 	}
+	
 	//odi.618 Method for finding the lables of filters 
 	public void findthelables(){
 	String dmname="US_AIRWAYS";
@@ -97,6 +98,26 @@ public class SelectTimeRange extends Login{
 		System.out.print("trace: ");
 		e.printStackTrace();
 	}
+	}
+
+	
+	//Method that I invoke in findlablesfilter() function in the above method
+	private void isElementpresent(String name, By by){
+		try
+		{
+		if(driver.findElement(by)!= null)
+			{
+			System.out.println(name+" "+"Element  is Present");
+			}else
+			{
+			//System.out.println("Element is Absent");
+				throw new Exception(name +" "+"Element is absent");
+			}	
+		} catch (Exception e) 
+			{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
 	}
 	//odi.614
 	public void search(){
@@ -275,26 +296,41 @@ public class SelectTimeRange extends Login{
 	//Number formatting
 	
 	public void numberFormat () {
-		//String dmName="US_AIRWAYS";
-		//gotoreports(dmName);
-		//pickAvalidDate();
+		String dmName="US_AIRWAYS";
+		gotoreports(dmName);
+		pickAvalidDate();
 		try{
 			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
 			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
 			List<WebElement> check= page.findElements(By.tagName("span"));
 			for(int i=0;i<check.size();i++)
 			{
-				System.out.println(i);
+				//System.out.println(i);
 				content=check.get(i).getText();
-				System.out.println(content);
-				contentValue=check.get(i+1).getText();
+				//System.out.println(content);
+				//contentValue=check.get(i+1).getText();
 				if(content.equals("Call Duration (minutes)"))
 						{
-					decimalcheck(contentValue);	
+					contentValue=check.get(i+1).getText();
+					decimalcheck(contentValue, "In call duration");	
 						}
+				else if(content.equals("Average Call Duration (minutes)"))
+				{
+					contentValue=check.get(i+1).getText();
+					decimalcheck(contentValue,"In average call duration");
+				}
 				//decimalcheck("Call Duration (minutes)", contentValue);
 				//decimalcheck("Average Call Duration (minutes)", contentValue);
-				
+				else if(content.equals("Average Call Duration for Transferred Calls (minutes)"))
+				{
+					contentValue=check.get(i+1).getText();
+					decimalcheck(contentValue, "In average call duration for transfered calls");	
+				}
+				else if(content.equals("Peak Hour Average Call Duration (minutes)"))
+				{
+					contentValue=check.get(i+1).getText();
+					decimalcheck(contentValue, "In peak hour average call duration");
+				}
 			}
 			/*{
 			 k= (check.get(i).getText());
@@ -339,7 +375,8 @@ public class SelectTimeRange extends Login{
 		}
 		
 	}
-	private void decimalcheck(String y) {
+	//Method to invoke decimal checking in the above method
+	private void decimalcheck(String y, String z) {
 		//if (content.equals(x)){
 			//System.out.println(i);
 			//String j = (check.get(i+1).getText());
@@ -347,14 +384,14 @@ public class SelectTimeRange extends Login{
 			double contentsConvert= Double.parseDouble(contents[1]);
 			//checkDecimalPlaces (jxc, 2);
 			if (checkDecimalPlaces(contentsConvert, 2) == true){
-				logger.info("we have found the decimal with 2 precision");
+				logger.info(z+" "+ "we have found the decimals with 2 precision");
 			}
 		// TODO Auto-generated method stub
 		
 		}
 	
 
-	//Method that checks for 2 decimal places
+	//Method that checks for 2 decimal places in above function
 	public boolean checkDecimalPlaces (double d, int decimalPlaces){
 		if (d==0) return true;
 
@@ -365,23 +402,8 @@ public class SelectTimeRange extends Login{
 		return (d==check);
 		
 	}
-	//Method that I invoke in findlablesfilter() function
-	private void isElementpresent(String name, By by){
-		try
-		{
-		if(driver.findElement(by)!= null)
-			{
-			System.out.println(name+" "+"Element  is Present");
-			}else
-			{
-			//System.out.println("Element is Absent");
-				throw new Exception(name +" "+"Element is absent");
-			}	
-		} catch (Exception e) 
-			{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-			}
-	}
+	
+	
+	
 		
 }
