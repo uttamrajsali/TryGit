@@ -33,7 +33,8 @@ public class SelectTimeRange extends Login{
 	private static String Element6 = "DNIS";
 	private static String Element7 = "Language";
 	public static WriteXmlFile ReportFile;
-	
+	private String content;
+	private String contentValue;
 	public SelectTimeRange(){
 	execute();//here it calls login.execute method
 	}
@@ -49,6 +50,7 @@ public class SelectTimeRange extends Login{
 		catch(NoSuchElementException e)
 		{
 			logger.info("can't find home button on the page");
+		//	driver.quit(); i guess this is the one I have to replace because of error"  Main:51 - can't find home button on the page"
 			driver.switchTo().defaultContent();
 			gotohomepage();
 		}
@@ -236,10 +238,14 @@ public class SelectTimeRange extends Login{
 					System.out.println(x);
 					System.out.println(roundOff);
 					if (jc >= TvaluesConvert){
+						
 						logger.info("the call volume is greater than the Transfer");
 						System.out.println("True");
 					} if(PeakHourCallValuesConvert <=jc ) {
 						System.out.println("this is second true");
+					}if (AverageCallValuesConvert == roundOff){
+						System.out.println("this is third is true");
+						
 					}
 					
 					/*if (jx[1].equals("11")){
@@ -266,8 +272,99 @@ public class SelectTimeRange extends Login{
 			driver.quit();	
 			
 		}
+	//Number formatting
 	
+	public void numberFormat () {
+		//String dmName="US_AIRWAYS";
+		//gotoreports(dmName);
+		//pickAvalidDate();
+		try{
+			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+			List<WebElement> check= page.findElements(By.tagName("span"));
+			for(int i=0;i<check.size();i++)
+			{
+				System.out.println(i);
+				content=check.get(i).getText();
+				System.out.println(content);
+				contentValue=check.get(i+1).getText();
+				if(content.equals("Call Duration (minutes)"))
+						{
+					decimalcheck(contentValue);	
+						}
+				//decimalcheck("Call Duration (minutes)", contentValue);
+				//decimalcheck("Average Call Duration (minutes)", contentValue);
+				
+			}
+			/*{
+			 k= (check.get(i).getText());
+				//String[] kx = k.split("\\s");
+			//all minutes should be decimal
+				decimalcheck();
+			if (k.equals("Call Duration (minutes)")){
+				System.out.println(i);
+				String j = (check.get(i+1).getText());
+				String[] jx = j.split("\\s");
+				double jxc= Double.parseDouble(jx[1]);
+				//checkDecimalPlaces (jxc, 2);
+				if (checkDecimalPlaces(jxc, 2) == true){
+					logger.info("we have found the decimal with 2 precision");
+				}
+				//not yet executed
+			} if (k.equals("Average Call Duration (minutes)")){
+				System.out.println(i);
+				String ACD = (check.get(i+1).getText());
+				String[] ACDs=ACD.split("\\s");
+				double ACDvalue=Double.parseDouble(ACDs[1]);
+				if(checkDecimalPlaces (ACDvalue, 2)==true) {
+					logger.info("this confirms Average call duration has 2 decimal points");
+				}
+
+			} if (k.equals("Average Call Duration for Transferred Calls (minutes)")){
+				System.out.println(i);
+				String TC = (check.get(i+1).getText());
+				String[] TCs=TC.split("\\s");
+				double TCsvalue=Double.parseDouble(TCs[1]);
+				if(checkDecimalPlaces (TCsvalue, 2)==true) {
+					logger.info("this confirms Average call duration has 2 decimal points");
+				}
+			} if (k.equals("Peak Hour Average Call Duration (minutes)")){
+				System.out.println(i);
+			}
+			
+			}*/
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+	private void decimalcheck(String y) {
+		//if (content.equals(x)){
+			//System.out.println(i);
+			//String j = (check.get(i+1).getText());
+			String[] contents = y.split("\\s");
+			double contentsConvert= Double.parseDouble(contents[1]);
+			//checkDecimalPlaces (jxc, 2);
+			if (checkDecimalPlaces(contentsConvert, 2) == true){
+				logger.info("we have found the decimal with 2 precision");
+			}
+		// TODO Auto-generated method stub
+		
+		}
 	
+
+	//Method that checks for 2 decimal places
+	public boolean checkDecimalPlaces (double d, int decimalPlaces){
+		if (d==0) return true;
+
+	    double multiplier = Math.pow(10, decimalPlaces); 
+	    double check  =  d * multiplier;
+	    check = Math.round(check);  	
+	    check = check/multiplier; 
+		return (d==check);
+		
+	}
 	//Method that I invoke in findlablesfilter() function
 	private void isElementpresent(String name, By by){
 		try
