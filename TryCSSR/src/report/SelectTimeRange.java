@@ -3,9 +3,11 @@ package report;
 import static org.junit.Assert.assertTrue;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import net.sourceforge.htmlunit.corejs.javascript.tools.debugger.Main;
@@ -210,6 +212,8 @@ public class SelectTimeRange extends Login{
 	}
 	//generate cssr with valid filters and check
 	public void cssrNumbers (){
+		int CallVolumeValue =0, TransfersValue = 0, PeakHourValue = 0;
+		double roundOff =0, AverageCallValue =0;
 		String dmName="US_AIRWAYS";
 		gotoreports(dmName);
 		pickAvalidDate();
@@ -229,17 +233,38 @@ public class SelectTimeRange extends Login{
 			List<WebElement> check= page.findElements(By.tagName("span"));
 			for(int i=0;i<check.size();i++)
 			{
-				String k= (check.get(i).getText());
-				String[] kx = k.split("\\s");
-				if (k.equals("Call Volume")){
-					System.out.println(kx[1]+kx[0]);
-					String j = (check.get(i+1).getText());
-					String[] jx = j.split("\\s");
-					System.out.println(jx[1]+jx[0]);
-					int jc= Integer.parseInt(jx[1]);
-					String  Tvalue= (check.get(i+3).getText());
-					String[] Tvalues= Tvalue.split("\\s");
-					int TvaluesConvert=Integer.parseInt(Tvalues[1]);
+				String content= (check.get(i).getText());
+				
+				//String[] kx = content.split("\\s");
+				if (content.equals("Call Volume")){
+					//System.out.println(kx[1]+kx[0]);
+					String CallVolume = (check.get(i+1).getText());
+					String[] CallVolumes = CallVolume.split("\\s");
+				//	System.out.println(jx[1]+jx[0]);
+					CallVolumeValue= Integer.parseInt(CallVolumes[1]);
+					System.out.println(CallVolumeValue);
+					
+				}
+				else if(content.equals("Transfers (All)")){
+					
+					String  TransfersAll= (check.get(i+1).getText());
+					String[] Tvalues= TransfersAll.split("\\s");
+					TransfersValue=Integer.parseInt(Tvalues[1]);
+					System.out.println(TransfersValue);
+					
+				}
+				else if(content.equals("Peak Hour Call Volume")){
+					String PeakHourCallVolume = (check.get(i+1).getText());
+					String[] PeakHourCallValues= PeakHourCallVolume.split("\\s");
+					PeakHourValue = Integer.parseInt(PeakHourCallValues[1]);
+				}
+				else if (content.equals("Call Duration (minutes)")){
+					String CallDuration= (check.get(i+1).getText());
+					String[] CallDurationValues= CallDuration.split("\\s");
+					double CallDurationValue=Double.parseDouble(CallDurationValues[1]);
+					double x= CallDurationValue/CallVolumeValue;
+				    roundOff =Math.round(x*100.0)/100.0;
+				/*else if(content.equals("Peak Hour Call Volume")){
 					String PeakHourCallValue = (check.get(i+21).getText());
 					String[] PeakHourCallValues= PeakHourCallValue.split("\\s");
 					int PeakHourCallValuesConvert=Integer.parseInt(PeakHourCallValues[1]);
@@ -251,18 +276,16 @@ public class SelectTimeRange extends Login{
 					double CallDurationValuesConvert=Double.parseDouble(CallDurationValues[1]);
 					double x= CallDurationValuesConvert/jc;
 					double roundOff =Math.round(x*100.0)/100.0;
-					System.out.println(jc);
-					System.out.println(TvaluesConvert);
+					
+					
 					System.out.println(PeakHourCallValuesConvert);
 					System.out.println(AverageCallValuesConvert);
 					System.out.println(CallDurationValuesConvert);
 					System.out.println(x);
 					System.out.println(roundOff);
-					if (jc >= TvaluesConvert){
-						
-						logger.info("the call volume is greater than the Transfer");
-						System.out.println("True");
-					} if(PeakHourCallValuesConvert <=jc ) {
+					*/
+				 
+					/*if(PeakHourCallValuesConvert <=jc ) {
 						System.out.println("this is second true");
 					}if (AverageCallValuesConvert == roundOff){
 						System.out.println("this is third is true");
@@ -274,9 +297,20 @@ public class SelectTimeRange extends Login{
 					}*/
 					
 					
-				}else if (k.equals(" 11")){
-					//System.out.println(jx[1]+jx[0]);
+				
 				}
+				else if (content.equals("Average Call Duration (minutes)")){
+					String AverageCallDuration= (check.get(i+1).getText());
+					String[] AverageCallDurationValues= AverageCallDuration.split("\\s");
+					AverageCallValue= Double.parseDouble(AverageCallDurationValues[1]);					
+							
+				}
+			
+			
+			
+				/*else if (k.equals(" 11")){
+					//System.out.println(jx[1]+jx[0]);
+				}*/
 				//String k= (check.get(i).getText()); // changes string to int
 				//int j= Integer.parseInt(check.get(i+2).getText());
 					//if (k >= j ){
@@ -285,7 +319,20 @@ public class SelectTimeRange extends Login{
 					
 						  
 				//}
+			//
 			}
+			if (CallVolumeValue >= TransfersValue){
+				
+				logger.info("the call volume is greater than the Transfer");
+				System.out.println("True");
+			}
+			if (PeakHourValue <= CallVolumeValue){
+				System.out.println("this is second true");
+			}
+			 if (AverageCallValue == roundOff){
+					System.out.println("this is third is true");
+			 }
+			
 			}catch(Exception e)
 			{
 				e.printStackTrace();
@@ -309,29 +356,64 @@ public class SelectTimeRange extends Login{
 				content=check.get(i).getText();
 				//System.out.println(content);
 				//contentValue=check.get(i+1).getText();
-				if(content.equals("Call Duration (minutes)"))
+				if(content.equals("Call Volume")){
+					contentValue = check.get(i+1).getText();
+					System.out.println(contentValue);
+					decimalcheck(contentValue, "example", 0);
+					System.out.println(contentValue);
+				}
+				/*if(content.equals("Call Duration (minutes)"))
 						{
 					contentValue=check.get(i+1).getText();
-					decimalcheck(contentValue, "In call duration");	
+					int precision=2;
+					decimalcheck(contentValue, "In call duration", precision);	
 						}
 				else if(content.equals("Average Call Duration (minutes)"))
 				{
 					contentValue=check.get(i+1).getText();
-					decimalcheck(contentValue,"In average call duration");
+					decimalcheck(contentValue,"In average call duration",2 );
 				}
 				//decimalcheck("Call Duration (minutes)", contentValue);
 				//decimalcheck("Average Call Duration (minutes)", contentValue);
 				else if(content.equals("Average Call Duration for Transferred Calls (minutes)"))
 				{
 					contentValue=check.get(i+1).getText();
-					decimalcheck(contentValue, "In average call duration for transfered calls");	
+					decimalcheck(contentValue, "In average call duration for transfered calls", 2);	
 				}
 				else if(content.equals("Peak Hour Average Call Duration (minutes)"))
 				{
 					contentValue=check.get(i+1).getText();
-					decimalcheck(contentValue, "In peak hour average call duration");
+					decimalcheck(contentValue, "In peak hour average call duration", 2);
 				}
-			}
+				else if (content.equals("Average Weekly Call Volume")){
+					contentValue=check.get(i+1).getText();
+					decimalcheck(contentValue, "Average Weekly call volume", 1);
+					
+				}*/
+
+				if (content.equals("Transfer Rate (All)")){
+					String percentage=check.get(i+1).getText();
+					String[] contentValues= percentage.split("%"); 
+					//System.out.println(contentValue);
+					contentValue= contentValues[0];
+					System.out.println(contentValue);
+					decimalcheck(contentValue, "In Transfer Rate ", 1);
+					/*for(int j=0; j<contentValues.length;j++){
+					System.out.println(contentValues[j]);
+					//System.out.println(contentValues[1]);
+					 */
+					}
+				else if(content.equals("Containment Rate (All)")){
+					String percentage=check.get(i+1).getText();
+					String[] contentValues= percentage.split("%"); 
+					System.out.println(contentValue);
+					contentValue= contentValues[0];
+					System.out.println(NumberFormat.getNumberInstance(Locale.US).format(contentValue));
+					decimalcheck(contentValue, "In Containment Rate ", 1);
+					
+				}
+				}
+			
 			/*{
 			 k= (check.get(i).getText());
 				//String[] kx = k.split("\\s");
@@ -369,22 +451,25 @@ public class SelectTimeRange extends Login{
 			}
 			
 			}*/
+			//driver.quit();
 		}catch(Exception e)
 		{
+			driver.quit();
 			e.printStackTrace();
 		}
 		
 	}
 	//Method to invoke decimal checking in the above method
-	private void decimalcheck(String y, String z) {
+	private void decimalcheck(String x, String y, int z) {
 		//if (content.equals(x)){
 			//System.out.println(i);
 			//String j = (check.get(i+1).getText());
-			String[] contents = y.split("\\s");
+			String[] contents = x.split("\\s");
 			double contentsConvert= Double.parseDouble(contents[1]);
 			//checkDecimalPlaces (jxc, 2);
-			if (checkDecimalPlaces(contentsConvert, 2) == true){
-				logger.info(z+" "+ "we have found the decimals with 2 precision");
+			
+			if (checkDecimalPlaces(contentsConvert, z) == true){
+				logger.info(y+" "+ "we have found the decimals with "+ z +"precision");
 			}
 		// TODO Auto-generated method stub
 		

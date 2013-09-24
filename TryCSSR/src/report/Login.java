@@ -32,7 +32,7 @@ public class Login {
 	private static final String userName = "id('username')";
 	private static final String passwordXPath = "//*[@id='password']";
 	private static final String submitXPath = "html/body/div[2]/form/div/table/tbody/tr[4]/td[2]/div/input[3]";
-	private static final String domainname = "US_AIRWAYS";
+	//private static final String domainname = "US_AIRWAYS";
 	
 	public Login() {
 		createNewWebDriver();
@@ -53,7 +53,7 @@ public class Login {
 			usrname.sendKeys(username);
 			pwd.sendKeys(password);
 			submit.submit();
-			choosedomain(domainname);
+			//choosedomain(domainname);
 			
 		}
 		catch (Exception e)

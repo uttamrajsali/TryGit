@@ -2,56 +2,52 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/selenium-java-2.34.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/selenium-java-2.34.0-srcs.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/slf4j-api-1.7.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/slf4j-log4j12-1.7.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/apache-mime4j-0.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/bsh-1.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/cglib-nodep-2.1_3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/commons-codec-1.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/commons-exec-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/commons-io-2.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/commons-jxpath-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/commons-lang3-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/cssparser-0.9.9.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/guava-14.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/hamcrest-library-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/htmlunit-2.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/htmlunit-core-js-2.12.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/httpclient-4.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/httpcore-4.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/httpmime-4.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/ini4j-0.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/jcommander-1.29.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/jetty-websocket-8.1.8.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/jna-3.4.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/jna-platform-3.4.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/json-20080701.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/junit-dep-4.11.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/nekohtml-1.9.17.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/netty-3.5.7.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/operadriver-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/phantomjsdriver-1.0.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/protobuf-java-2.4.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/sac-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/serializer-2.7.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/testng-6.8.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/xalan-2.7.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/xercesImpl-2.10.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/selenium-2.34.0/libs/xml-apis-1.4.01.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/PDFBox-0.7.3/lib/PDFBox-0.7.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/log4j-1.2.17 (1)/apache-log4j-1.2.17/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/workspace/automation/cstr/bin/lib/httpcore-4.2.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/workspace/automation/cstr/bin/lib/operadriver-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/workspace/automation/cstr/bin/lib/sac-1.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/workspace/automation/cstr/bin/lib/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/apache-mime4j-0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/bsh-1.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/commons-codec-1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/commons-exec-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/commons-io-2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/commons-jxpath-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/commons-lang3-3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/cssparser-0.9.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/guava-14.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/hamcrest-library-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/htmlunit-2.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/htmlunit-core-js-2.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/httpclient-4.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/httpcore-4.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/httpmime-4.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/ini4j-0.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/jcommander-1.29.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/jetty-websocket-8.1.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/jna-3.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/jna-platform-3.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/json-20080701.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/junit-dep-4.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/nekohtml-1.9.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/netty-3.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/operadriver-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/phantomjsdriver-1.0.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/protobuf-java-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/sac-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/selenium-java-2.34.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/selenium-java-2.34.0-srcs.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/serializer-2.7.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/testng-6.8.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/xalan-2.7.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/xercesImpl-2.10.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/seleniumlibs/xml-apis-1.4.01.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/httpcore-4.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/operadriver-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/PDFBox-0.7.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/sac-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/slf4j-api-1.7.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/slf4j-log4j12-1.7.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/xml-apis-1.4.01.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
