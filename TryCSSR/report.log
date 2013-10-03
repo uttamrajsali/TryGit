@@ -3,3 +3,138 @@
 2013-09-24 09:31:35 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
 2013-09-24 09:31:35 INFO  DefaultHttpClient:730 - Retrying request
 2013-09-24 09:32:04 INFO  Main:326 - the call volume is greater than the Transfer
+2013-09-24 11:07:36 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 11:07:36 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 11:07:37 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:37 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:38 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:38 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:38 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:39 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:39 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:39 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:40 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:40 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:40 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:41 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:41 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:41 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:42 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:42 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:42 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:43 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:43 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:43 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:07:50 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 11:07:50 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 11:27:58 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 11:27:58 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 11:28:53 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 11:28:53 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 11:28:55 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:55 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:55 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:56 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:56 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:56 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:57 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:57 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:57 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:58 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:58 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:58 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:59 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:59 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:28:59 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:00 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:00 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:00 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:01 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:01 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:01 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:02 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:02 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:03 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:03 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:03 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:04 INFO  Main:52 - can't find home button on the page
+2013-09-24 11:29:52 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 11:29:52 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 11:39:08 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 11:39:08 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 11:56:10 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 11:56:10 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 11:58:03 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 11:58:03 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 11:58:51 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 11:58:51 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:01:53 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:01:53 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:01:56 INFO  Main:52 - can't find home button on the page
+2013-09-24 12:02:33 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:02:33 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:14:11 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:14:11 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:17:55 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:17:55 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:19:25 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:19:25 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:19:27 INFO  Main:52 - can't find home button on the page
+2013-09-24 12:19:28 INFO  Main:52 - can't find home button on the page
+2013-09-24 12:21:54 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:21:54 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:31:00 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:31:00 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:33:47 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:33:47 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:34:34 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:34:34 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 12:35:20 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 12:35:20 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:04:07 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 13:04:07 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:04:09 INFO  Main:52 - can't find home button on the page
+2013-09-24 13:04:55 INFO  Main:52 - can't find home button on the page
+2013-09-24 13:06:38 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 13:06:38 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:07:58 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 13:07:58 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:09:18 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 13:09:18 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:11:30 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 13:11:30 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:12:19 INFO  Main:269 - the call volume is greater than the Transfer
+2013-09-24 13:23:33 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 13:23:33 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:23:59 INFO  Main:367 - example we have found the decimals with 0precision
+2013-09-24 13:23:59 INFO  Main:367 - In Transfer Rate  we have found the decimals with 1precision
+2013-09-24 13:24:54 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 13:24:54 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:25:20 INFO  Main:367 - example we have found the decimals with 0precision
+2013-09-24 13:25:21 INFO  Main:367 - In Transfer Rate  we have found the decimals with 1precision
+2013-09-24 13:25:21 INFO  Main:367 - In Containment Rate  we have found the decimals with 1precision
+2013-09-24 13:25:21 INFO  Main:367 - In call duration we have found the decimals with 2precision
+2013-09-24 13:25:21 INFO  Main:367 - In average call duration we have found the decimals with 2precision
+2013-09-24 13:25:21 INFO  Main:367 - In average call duration for transfered calls we have found the decimals with 2precision
+2013-09-24 13:25:22 INFO  Main:367 - Average Weekly call volume we have found the decimals with 1precision
+2013-09-24 13:25:22 INFO  Main:367 - In peak hour average call duration we have found the decimals with 2precision
+2013-09-24 13:27:29 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 13:27:29 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:27:52 INFO  Main:367 - example we have found the decimals with 0precision
+2013-09-24 13:27:53 INFO  Main:367 - In Transfer Rate  we have found the decimals with 1precision
+2013-09-24 13:27:53 INFO  Main:367 - In Containment Rate  we have found the decimals with 1precision
+2013-09-24 13:27:53 INFO  Main:367 - In call duration we have found the decimals with 2precision
+2013-09-24 13:27:53 INFO  Main:367 - In average call duration we have found the decimals with 2precision
+2013-09-24 13:27:54 INFO  Main:367 - In average call duration for transfered calls we have found the decimals with 2precision
+2013-09-24 13:27:54 INFO  Main:367 - Average Weekly call volume we have found the decimals with 1precision
+2013-09-24 13:27:54 INFO  Main:367 - In peak hour average call duration we have found the decimals with 2precision
+2013-09-24 13:37:35 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-09-24 13:37:35 INFO  DefaultHttpClient:730 - Retrying request
+2013-09-24 13:38:02 INFO  Main:367 - example we have found the decimals with 0 precision
+2013-09-24 13:38:02 INFO  Main:367 - In Transfer Rate  we have found the decimals with 1 precision
+2013-09-24 13:38:02 INFO  Main:367 - In Containment Rate  we have found the decimals with 1 precision
+2013-09-24 13:38:02 INFO  Main:367 - In call duration we have found the decimals with 2 precision
+2013-09-24 13:38:03 INFO  Main:367 - In average call duration we have found the decimals with 2 precision
+2013-09-24 13:38:03 INFO  Main:367 - In average call duration for transfered calls we have found the decimals with 2 precision
+2013-09-24 13:38:03 INFO  Main:367 - Average Weekly call volume we have found the decimals with 1 precision
+2013-09-24 13:38:03 INFO  Main:367 - In peak hour average call duration we have found the decimals with 2 precision

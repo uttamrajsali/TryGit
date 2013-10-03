@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?><REPORT><TITLE>CSTR Test Results</TITLE><SECT>Test to verify labeling <PARA>Test to verify labeling result: passed</PARA></SECT></REPORT>
+<?xml version="1.0" encoding="UTF-8"?><REPORT><TITLE>CSTR Test Results</TITLE><SECT>ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result<PARA>ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result =&gt; Pass</PARA></SECT><SECT>ODI6.x-627:CSSR numbers must be reasonable<PARA>ODI6.x-627:CSSR numbers must be reasonable =&gt; Pass</PARA></SECT></REPORT>

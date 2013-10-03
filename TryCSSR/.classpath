@@ -49,5 +49,6 @@
 	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/slf4j-log4j12-1.7.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/git/TryGit/TryCSSR/lib/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="C:/Users/uttamraj_sali/Downloads/commons-httpclient-3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

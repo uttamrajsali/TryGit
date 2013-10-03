@@ -27,7 +27,7 @@ public class Login {
 	public static String browser = null;
 	public static UserInfo user;
 	public static final String projectPath = System.getProperty("user.dir");
-	//public static WriteXmlFile ReportFile;
+	public static WriteXmlFile ReportFile;
 
 	private static final String userName = "id('username')";
 	private static final String passwordXPath = "//*[@id='password']";
@@ -40,8 +40,8 @@ public class Login {
 	public  void execute() {
 		try
 		{
-			//ReportFile = new WriteXmlFile();
-			//ReportFile.addTestCase("Test", true);
+			ReportFile = new WriteXmlFile();
+		//	ReportFile.addTestCase("Test", true);
 			//ReportFile.WriteToFile();
 			//setting user details like url,name,password
 			getuserinfo();

@@ -11,14 +11,17 @@ public class Main {
 			parseCommandLine(args);
 			//Login s = new Login();
 			//s.execute();
-			//GenerateHtml.execute();
+			
 			SelectTimeRange x = new SelectTimeRange();
 			//x.findthelables();
 			//x.search();
 			//x.dnisfilter();
 			//x.abfilter();
-			x.cssrNumbers();
+			//x.cssrNumbers();
 			//x.numberFormat();
+			//
+			x.numberFormat();
+			GenerateHtml.execute();
 		}
 		catch(Exception e)
 		{
