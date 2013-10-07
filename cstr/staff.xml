@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<company>
+	<test id="1001">
+		<firstname>yong</firstname>
+		<lastname>mook kim</lastname>
+		<nickname>mkyong</nickname>
+		<salary>100000</salary>
+		<testname>execute</testname>
+		
+	</test>
+	<may id="2001">
+		<firstname>low</firstname>
+		<lastname>yin fong</lastname>
+		<nickname>fong fong</nickname>
+		<salary>200000</salary>
+		<testname>findthelables</testname>
+	</may>
+	<may id ="1">
+		<testname>search</testname>
+	</may>
+</company>
