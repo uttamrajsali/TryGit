@@ -1,21 +1,12 @@
 <?xml version="1.0"?>
 <company>
-	<test id="1001">
-		<firstname>yong</firstname>
-		<lastname>mook kim</lastname>
-		<nickname>mkyong</nickname>
-		<salary>100000</salary>
-		<testname>execute</testname>
-		
-	</test>
-	<may id="2001">
-		<firstname>low</firstname>
-		<lastname>yin fong</lastname>
-		<nickname>fong fong</nickname>
-		<salary>200000</salary>
+	<classname id="org.yujie.oditest.cssr.SelectTimeRange">
 		<testname>findthelables</testname>
-	</may>
-	<may id ="1">
+		<testname>uttam</testname>
+	</classname>
+	
+	<classname id="org.yujie.oditest.cssr.Timestep">
 		<testname>search</testname>
-	</may>
+	</classname>
+	
 </company>
