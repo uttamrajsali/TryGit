@@ -1,7 +1,8 @@
 package org.yujie.oditest.cssr;
 
-import org.yujie.oditest.cssr.*;
 import org.openqa.selenium.internal.seleniumemulation.IsAlertPresent;
+
+import com.nuance.*;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

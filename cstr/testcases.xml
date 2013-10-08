@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<company>
+	<classname id="org.yujie.oditest.cssr.SelectTimeRange">
+		<testname>findthelables</testname>
+		<testname>abfilter</testname>
+		<testname>dnisfilter</testname>
+		<testname>numberFormat</testname>
+		<testname>cssrNumbers</testname>
+		<testname>search</testname>
+	</classname>
+	
+	<classname id="org.yujie.oditest.cssr.Timestep">
+		<testname>search</testname>
+	</classname>
+	
+</company>
