@@ -180,6 +180,44 @@ public class Mainpage {
 						
 		}
 	}
+	public void transferReport ()
+	{
+		try{
+			WebElement odi= (new WebDriverWait(driver,10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'On Demand Insight')]")));
+			odi.click();
+			WebElement report=(new WebDriverWait(driver,10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Reports')]")));
+			report.click();
+			WebElement tReport= (new WebDriverWait(driver,10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Call Transfer Report')]")));
+			tReport.click();
+			driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+			String mainWinhandler = driver.getWindowHandle();
+		
+			Set<String> handles = driver.getWindowHandles();
+		
+		for (String handle : handles){
+			if (!mainWinhandler.equals(handle))
+			{
+				WebDriver popup  = driver.switchTo().window(handle);
+				popup.close();
+			}	
+		}
+		driver.switchTo().defaultContent();
+		
+		// This is to just initialise the submit string to element location to use it in the methods
+		WebElement submittd = new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("submittd")));
+		submit = submittd.findElement(By.tagName("input"));
+		
+		
+			}
+			catch (TimeoutException e)
+			{
+				logger.info("timeout exception"); 
+				gotomainpage();
+				transferReport();
+						
+		}
+	}
 
 public void setTime (String period)
 	{
@@ -266,6 +304,7 @@ public void setTime (String period)
 	}
 	public static void main(String[] args)
 	{
+		
 		//WebElement home = mm.driver.findElement(By.xpath(homePath));
 		//home.submit();
 	}

@@ -25,8 +25,10 @@ public class AppTest
         super( testName );
         Login logintest = new Login();
         logintest.execute();
-        Timestep selecttest = new Timestep();
-        SelectTimeRange selectcssrtest = new SelectTimeRange();
+      //  Timestep selecttest = new Timestep();
+        //SelectTimeRange selectcssrtest = new SelectTimeRange();
+        CallTransferReportTests x = new CallTransferReportTests();
+        x.destinationNumber();
         //Test cases begins
         /*selectcssrtest.findthelables();
         selectcssrtest.search();
@@ -42,9 +44,9 @@ public class AppTest
         selecttest.weekSelection();
         selecttest.monthSelection();*/
         //selecttest.daySelectionSorting();
-        selecttest.weekSelectionSorting();
+        //selecttest.weekSelectionSorting();
        // selecttest.monthSelectionSorting();
-        selecttest.exitdriver();
+        //selecttest.exitdriver();
         //Exporting the results to HTML
         GenerateHtml FinalRep = new GenerateHtml();
         FinalRep.execute();
