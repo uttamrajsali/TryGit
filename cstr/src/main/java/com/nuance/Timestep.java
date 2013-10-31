@@ -1,5 +1,5 @@
 package com.nuance;
-
+//CSTR
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.ParseException;
@@ -41,7 +41,7 @@ public class Timestep extends Mainpage {
 		gotomainpage();
 	}
 	//ODI6.x-660:Time Step filter should be selectable
-	public boolean filterShouldBeSelectable()
+	public void filterShouldBeSelectable()
 	{
 		
 		TrendReport();
@@ -65,9 +65,12 @@ public class Timestep extends Mainpage {
 				break;
 				}				
 		}
-
+		if(result)
+			ReportFile.addTestCase("ODI6.x-660:Time Step filter should be selectable", "ODI6.x-660:Time Step filter should be selectable => Pass");
+		else
+			ReportFile.addTestCase("ODI6.x-660:Time Step filter should be selectable", "ODI6.x-660:Time Step filter should be selectable => Fail");
 		gotomainpage();		
-		return result;
+		
 	}
 	
 	//	ODI6.x-646: CSTR - Search
@@ -675,10 +678,10 @@ public class Timestep extends Mainpage {
 		String enddateValue = enddate.getAttribute("value");
 		format = new SimpleDateFormat("yyyy/MM/dd");
 		
-		Calendar cal = Calendar.getInstance();
+		//Calendar cal = Calendar.getInstance();
 		try {
 			Date date = format.parse(enddateValue);
-			cal.setTime(date);
+			//cal.setTime(date);
 						
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block

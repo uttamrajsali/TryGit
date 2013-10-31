@@ -16,8 +16,8 @@ public class ReadXMLFile {
   public static void main(String args[]) {
  
     try {
-   	//Login logintest = new Login();
-    //logintest.execute();
+   	Login logintest = new Login();
+    logintest.execute();
     File fXmlFile = new File("testcases.xml");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -31,16 +31,19 @@ public class ReadXMLFile {
 	
 	System.out.println("----------------------------");
  
-	/*?Class cls = Class.forName(name);
+	/*?Class cls = Class.forName(name); //name is the id attribute which i have to extract from xml file
 	Object obj = cls.newInstance();
 	Class noparams[] = {};*/
 	//This for loop execute only twice one for id = select time range another for id = timestep
 	for (int temp = 0; temp < nList.getLength(); temp++) {
  
 		Node nNode = nList.item(temp);
- 
-		System.out.println("\nCurrent Element :" + nNode.getNodeName());
- 
+		String name=nNode.getAttributes().getNamedItem("id").getNodeValue();
+		System.out.println("\nCurrent Element :" + nNode.getNodeName()+ nNode.getAttributes().getNamedItem("id").getNodeValue()+" "+ name);
+ //i think i can use the above block here
+		Class cls = Class.forName(name); //name is the id attribute which i have to extract from xml file
+		Object obj = cls.newInstance();
+		Class noparams[] = {};
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 			
 			Element eElement = (Element) nNode;
@@ -49,8 +52,9 @@ public class ReadXMLFile {
 		    {
 		        Element x = (Element) tLists.item(j);
 			System.out.println(x.getFirstChild().getNodeValue());
-			//Method method = cls.getDeclaredMethod(x, noparams);
-			//method.invoke(obj, null);
+			Method method = cls.getDeclaredMethod(x.getFirstChild().getNodeValue(), noparams);
+			//Method method = cls.getClass().getMethod(x, noparams);
+			method.invoke(obj, null);
 		    }
 		}
 	}

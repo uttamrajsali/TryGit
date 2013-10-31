@@ -39,9 +39,9 @@ public class Login extends Mainpage{
 		
 		userinput.sendKeys(username);
 		pswdinput.sendKeys(password);
-		submit.submit();
+		submit.click();
 		validlogin();
-		choosedomain("US_AIRWAYS");
+		//choosedomain("US_AIRWAYS");
 	}
 	
 	

@@ -56,7 +56,7 @@ public class Mainpage {
 	}
 	
 	public void choosedomain(String domainname)
-	{
+	{//i have to put a try catch block here because what if it doesnt have the domain
 		WebElement domainlist = driver.findElement(By.id("dropdown"));
 		Select select = new Select(domainlist);
 		select.selectByValue(domainname);
@@ -104,11 +104,11 @@ public class Mainpage {
 			//actionClick(OnDemandInsight);
 			OnDemandInsight.click();
 		
-			WebElement Reports = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[5]/div[2]/div/div[2]/ul/li[4]/ul/li[2]/a")));
+			WebElement Reports=(new WebDriverWait(driver,10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Reports')]")));
 			//actionClick(Reports);
 			Reports.click();
 		
-			WebElement CallStatisticsTrendReport = new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[5]/div[2]/div/div[2]/ul/li[4]/ul/li[2]/ul/li[2]/a")));
+			WebElement CallStatisticsTrendReport= (new WebDriverWait(driver,10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Call Statistics Trend Report')]")));
 			//actionClick(CallStatisticsTrendReport);
 			CallStatisticsTrendReport.click();
 			

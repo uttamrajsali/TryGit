@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <company>
-	<classname id="org.yujie.oditest.cssr.SelectTimeRange">
+	<classname id="com.nuance.SelectTimeRange">
 		<testname>findthelables</testname>
 		<testname>abfilter</testname>
 		<testname>dnisfilter</testname>
@@ -9,7 +9,7 @@
 		<testname>search</testname>
 	</classname>
 	
-	<classname id="org.yujie.oditest.cssr.Timestep">
+	<classname id="com.nuance.Timestep">
 		<testname>search</testname>
 	</classname>
 	
