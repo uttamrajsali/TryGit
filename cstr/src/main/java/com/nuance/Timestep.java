@@ -10,9 +10,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.TimeUnit;
 
 import junit.framework.Assert;
-
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -32,51 +32,47 @@ import com.google.common.collect.Sets.SetView;
 public class Timestep extends Mainpage {
 	
 	private String timestepTestresult;
-	
-	
-	
-	
+		
 	public Timestep()
 	{
 		gotomainpage();
 	}
-	//ODI6.x-660:Time Step filter should be selectable
-	public void filterShouldBeSelectable()
-	{
-		
-		TrendReport();
-		boolean result = false;
-		WebElement timeRange = driver.findElement(By.id("date_range"));
-		Select select = new Select(timeRange);
-		select.selectByValue("l30d");
-		
-		WebElement timesteps = driver.findElement(By.id("PARAM_TIME_STEP"));
-		
-		timesteps.click();
-		
-		select = new Select(timesteps);
-		List<WebElement> timestep = select.getOptions();
-		for (int i = 0; i <timestep.size(); i++)
-		{
-			select.selectByIndex(i);
-			if (timestep.get(i).isSelected() == true)
+	//	ODI6.x-646: CSTR - Search// he is doing no search here
+	public void search(){
+		transferReport();
+			try{
+			driver.findElement(By.id("PARAM_START_DATE")).clear();
+			removeAlert();
+			driver.findElement(By.id("PARAM_START_DATE")).sendKeys("8/11/2013");
+			driver.findElement(By.id("PARAM_END_DATE")).clear();
+			removeAlert();
+			driver.findElement(By.id("PARAM_END_DATE")).sendKeys("9/11/2013");
+			driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+			WebElement rangeStart=page.findElement(By.xpath("//*[contains(text(),'8/11/2013')]"));
+			WebElement rangeEnd=page.findElement(By.xpath("//*[contains(text(),'9/11/2013')]"));
+				if(rangeStart!=null&&rangeEnd!=null)
+				{
+				logger.info("Report for selected range is showed");
+				ReportFile.addTestCase("ODI6.x-646:CSTR - Search", "ODI6.x-646:CSTR - Search=> Pass");
+				}
+			ReportFile = new WriteXmlFile();
+			}
+			catch (NoSuchElementException e)
 			{
-				result = true;
-				break;
-				}				
+				ReportFile.addTestCase("ODI6.x-646:CSTR - Search", "ODI6.x-646:CSTR - Search=> Fail");
+				
+			}
+		ReportFile.WriteToFile();
+		driver.switchTo().defaultContent();
+		gotomainpage();
 		}
-		if(result)
-			ReportFile.addTestCase("ODI6.x-660:Time Step filter should be selectable", "ODI6.x-660:Time Step filter should be selectable => Pass");
-		else
-			ReportFile.addTestCase("ODI6.x-660:Time Step filter should be selectable", "ODI6.x-660:Time Step filter should be selectable => Fail");
-		gotomainpage();		
 		
-	}
-	
-	//	ODI6.x-646: CSTR - Search
-	public void Search()
+	/*public void Search()
 	{
-		TrendReport();
+		//TrendReport();
 		
 		try {
 			WebElement timeRange = driver.findElement(By.id("date_range"));
@@ -123,13 +119,16 @@ public class Timestep extends Mainpage {
 		}
 		
 		startpos +=43;
-		
 		logger.info("start" + startpos);
+		} catch (NoSuchElementException e)
+		{
+			logger.info("fail");
+		}
 		driver.switchTo().defaultContent();
 		gotomainpage();//forgot to call this inorder to work for another function
 		
 	}
-	
+	*/
 	
 	//	ODI6.x-650:Report look'n Feel: Enhancement from Portal
 	public void EnhancementFromPortal()
@@ -148,62 +147,120 @@ public class Timestep extends Mainpage {
 			select.selectByValue("WEEK");
 			
 			submit.click();
-		} catch (NoSuchElementException e)
+		/*} catch (NoSuchElementException e)
 		{
 			gotomainpage();
 			EnhancementFromPortal();
 		}
 		
-		try{
-			
+		try{*/
 			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
 			WebElement reportpage = new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewercridreportpage")));
-			
 			WebElement header = reportpage.findElement(By.xpath("//*[contains(text(),'Statistics')]"));
-						
-			if(header.getCssValue("font-family").equals("trebuchet ms"))
-				ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify report text should be change font Arial to  font Trebuchet MS (with various) for all text in the reports => Pass");
+			if((header.getCssValue("font-family").equals("trebuchet ms"))&&(header.getCssValue("transparent").equals("transparent")))
+			/*	ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify report text should be change font Arial to  font Trebuchet MS (with various) for all text in the reports => Pass");
 			else 
 				ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify report text should be change font Arial to  font Trebuchet MS (with various) for all text in the reports => Fail");
-			
-			if(header.getCssValue("transparent").equals("transparent"))
+		*/	
 				ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify use the gradient as the background of the report header => Pass");
 			else 
 				ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify use the gradient as the background of the report header => Fail");
 
 			
-		} catch(TimeoutException e)
+		} catch(NoSuchElementException e)
 		{
 			logger.info("enhancementFromPotal find element exception");
-			gotomainpage();
-			EnhancementFromPortal();
+			ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify use the gradient as the background of the report header => Fail");
 		} 
 		driver.switchTo().defaultContent();
-		  gotomainpage();                                        
-		//driver.quit();
-		
+		ReportFile.WriteToFile();	
+		gotomainpage();                                        
 	}
-
+//654
+	public void abfilterselectable(){
+		choosedomain("METROPCS");
+		TrendReport();
+		WebElement ABvalue = null;
+		boolean result,selectValuesPresent;
+		try{
+			boolean isPresent = driver.findElements(By.id("PARAM_APP_VARIANT_ID")).size()>0;
+			if(isPresent){
+				logger.info("A/B filter values are present");
+				ABvalue = driver.findElement(By.id("PARAM_APP_VARIANT_ID"));
+				Select select = new Select(ABvalue);
+				result= select.isMultiple();
+				List<WebElement> selectValues=select.getOptions();
+				selectValuesPresent = false;
+				for (int i=0;i<selectValues.size(); i++)
+				{
+					if(selectValues.get(i).getText().equals("All"))
+					selectValuesPresent =true;
+					else if(selectValues.get(i).getText().equals("UNKNOWN"))
+					selectValuesPresent = true;
+					else selectValuesPresent =false;
+				}	
+				if(result&&selectValuesPresent)
+					ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Pass");
+				else 
+					ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Fail");
+			}
+			else ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Fail");
+		}catch(Exception e)
+		{
+			ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Fail");
+			logger.info("Exception" + e);
+		}
+		driver.switchTo().defaultContent();
+		ReportFile.WriteToFile();
+		gotomainpage();
+	}
+	//655
+//odi.620 Method that the report footer a/b filter	
+	public void abfilter(){
+		choosedomain("METROPCS");
+		TrendReport();
+		try{
+			WebElement ABvalue = driver.findElement(By.id("PARAM_APP_VARIANT_ID"));
+			Select select = new Select(ABvalue);
+			select.deselectAll();
+			select.selectByIndex(1);
+			String selectText = select.getFirstSelectedOption().getText();
+			submit.click();
+			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+			WebElement tag=page.findElement(By.xpath("//*[contains(text(),'A/B')]"));
+			String filter = tag.getText();
+			if(filter.equals(String.format("A/B Combo ID: %s", selectText )))
+				if(tag != null)
+				{
+				logger.info(String.format("A/B Combo ID: %s", selectText )+" is present");
+				ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-620:A/B filter: should be in the report footer => Pass");
+				}
+		}catch (NoSuchElementException e)
+		{
+			ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-620:A/B filter: should be in the report footer => Fail");
+			
+		}
+		driver.switchTo().defaultContent();
+		ReportFile.WriteToFile();
+		gotomainpage();
+	}
 	//ODI6.x-657:DNIS filter: new look of the drop down list
-	
+	/*
 	public void DNISFilterNewLook()
 	{
 		TrendReport();
 		WebElement DNIS;
 		Select select;
-		
 		try{
-			
 			DNIS = driver.findElement(By.id("PARAM_DNIS"));
 			select = new Select(DNIS);
 			WebElement firstOption = select.getFirstSelectedOption();
-			
-			
 			if (firstOption.getText().equals("All"))
 			{
 				List<WebElement> allop = select.getOptions();
 				for (WebElement option : allop) { //iterate over the options
-				    logger.info(option.getAttribute("bgcolor"));
+				    logger.info(option.getAttribute("bgcolor")); //why bgcolor
 				}
 				}
 		} catch (NoSuchElementException e)
@@ -216,9 +273,115 @@ public class Timestep extends Mainpage {
 		gotomainpage();	
 		//driver.quit();
 		
+	}*/
+	public void DNISFilterNewLook()
+	{
+		choosedomain("US_AIRWAYS");
+		TrendReport();
+		WebElement DNIS;
+		Select select;
+		try{
+			DNIS = driver.findElement(By.id("PARAM_DNIS"));
+			select = new Select(DNIS);
+			//WebElement firstOption = select.getFirstSelectedOption();
+			//if (firstOption.getText().equals("All"))
+			
+				List<WebElement> allop = select.getOptions();
+				for (WebElement option : allop) { //iterate over the options
+				    if(option.getText().equals("All"))
+				    	if(select.getFirstSelectedOption().equals("All"))//returns the current selected option
+				    	if(select.isMultiple())
+				    		select.selectByValue("All");
+				    	if(select.getFirstSelectedOption().equals("None"))
+				    		ReportFile.addTestCase("ODI6.x-657:DNIS filter: new look of the drop down list", "ODI6.x-657:DNIS filter: new look of the drop down list=> Pass");
+				    	else
+				    		ReportFile.addTestCase("ODI6.x-657:DNIS filter: new look of the drop down list", "ODI6.x-657:DNIS filter: new look of the drop down list => Fail");
+					
+				}
+				
+		} catch (NoSuchElementException e)
+		{
+			ReportFile.addTestCase("ODI6.x-657:DNIS filter: new look of the drop down list", "ODI6.x-657:DNIS filter: new look of the drop down list => Fail");
+		}
+		driver.switchTo().defaultContent();
+		ReportFile.WriteToFile();	
+		gotomainpage();	
+		//driver.quit();
 	}
+	//658
+	public void dnisfilter(){
+		choosedomain("US_AIRWAYS");
+		TrendReport();
+		try{
+		driver.switchTo().defaultContent();
+		WebElement DNISvalue = driver.findElement(By.id("PARAM_DNIS"));
+		Select select = new Select(DNISvalue);
+		select.deselectAll();
+		select.selectByIndex(1);
+		String selectText = select.getFirstSelectedOption().getText();
+		//select.selectByValue("2404953077");
+		submit.click();
 	
-	//	ODI6.x-662:Time step hour selection started"
+		new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+		WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+		WebElement tag=page.findElement(By.xpath("//*[contains(text(),'DNIS:')]"));
+		String filter = tag.getText();
+		if(filter.equals(String.format("DNIS: %s", selectText )))
+			if(tag != null)
+			{
+			logger.info(String.format("DNIS: %s", selectText )+" is present");
+			ReportFile.addTestCase("ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result", "ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result => Pass");
+			}
+	
+		}catch (NoSuchElementException e)
+		{
+			ReportFile.addTestCase("ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result", "ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result => Fail");
+			
+		}
+		ReportFile.WriteToFile();
+		driver.switchTo().defaultContent();
+		gotomainpage();
+	}
+	//ODI6.x-660:Time Step filter should be selectable
+	public void filterShouldBeSelectable()
+	{
+		TrendReport();
+		boolean result = false;
+		try{
+			WebElement timeRange = driver.findElement(By.id("date_range"));
+			Select select = new Select(timeRange);
+			select.selectByValue("l30d");
+			
+			WebElement timesteps = driver.findElement(By.id("PARAM_TIME_STEP"));
+			
+			timesteps.click();
+			
+			select = new Select(timesteps);
+			List<WebElement> timestep = select.getOptions();
+			for (int i = 0; i <timestep.size(); i++)
+			{
+				select.selectByIndex(i);
+				if (timestep.get(i).isSelected() == true)
+				{
+					result = true;
+					break;
+					}				
+			}
+			if(result)
+				ReportFile.addTestCase("ODI6.x-660:Time Step filter should be selectable", "ODI6.x-660:Time Step filter should be selectable => Pass");
+			else
+				ReportFile.addTestCase("ODI6.x-660:Time Step filter should be selectable", "ODI6.x-660:Time Step filter should be selectable => Fail");
+		}
+		catch(NoSuchElementException e)
+		{
+			ReportFile.addTestCase("ODI6.x-660:Time Step filter should be selectable", "ODI6.x-660:Time Step filter should be selectable => Fail");
+		}
+		driver.switchTo().defaultContent();
+		ReportFile.WriteToFile();
+		gotomainpage();		
+		
+	}
+//	ODI6.x-662:Time step hour selection started"
 	
 	public void hourSelection()
 	{
@@ -975,6 +1138,7 @@ public class Timestep extends Mainpage {
 	//ODI6.x-673:Time step year sorting	
 	public boolean yearSelectionSorting()
 	{
+		choosedomain("METROPCS");
 		TrendReport();
 		
 		List<WebElement> years;
@@ -1393,6 +1557,30 @@ public class Timestep extends Mainpage {
 	public void exitdriver(){
 		driver.quit();
 	}
+	//679
+	public void noData(){
+		transferReport();
+		try{
+			setTime("noData");			
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewercridreportpage")));
+			WebElement content=page.findElement(By.xpath("//*[contains(text(),'No')]"));
+			String data=content.getText();
+			logger.info(data);
+			if("No data was found for the selected criteria.".equals(data))
+			ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information=> Pass");
+			else ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information=> Fail");
+		}catch (NoSuchElementException e)
+		{
+			e.printStackTrace();
+			ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information => Fail");
+		}
+		ReportFile.WriteToFile();
+		driver.switchTo().defaultContent();
+		gotomainpage();
+	}
+
 	
 }
 	

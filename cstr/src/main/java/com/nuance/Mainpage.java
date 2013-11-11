@@ -128,9 +128,8 @@ public class Mainpage {
 		
 		driver.switchTo().defaultContent();
 		
-		WebElement submittd = new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("submittd")));
-		submit = submittd.findElement(By.tagName("input"));
-		
+		//WebElement submittd = new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("submittd")));
+		submit = driver.findElement(By.xpath("//input[@value='Submit']"));
 		}
 		catch (TimeoutException e)
 		{
@@ -236,8 +235,8 @@ public void setTime (String period)
 	}
 	
 	startdate.clear();
-	
 	removeAlert();
+	
 	if(period.equals("1 month"))
 	{
 	cal.add(Calendar.MONTH, -1);
@@ -282,15 +281,24 @@ public void setTime (String period)
 	startdate.sendKeys(starttime);
 	
 	enddate.clear();
-	
 	removeAlert();
 	
 	cal.add(Calendar.HOUR, 24);
 	String endtime = format.format(cal.getTime());
 	enddate.sendKeys(endtime);
-	
-	
 	}
+	else if (period.equals("noData"))
+	{
+	cal.add(Calendar.YEAR, -5);
+	String starttime = format.format(cal.getTime());
+	startdate.sendKeys(starttime);
+	enddate.clear();
+	removeAlert();
+	cal.add(Calendar.MONTH, 1);
+	String endtime=format.format(cal.getTime());
+	enddate.sendKeys(endtime);
+	}
+	
 }
 	
 	public void actionClick (WebElement element)

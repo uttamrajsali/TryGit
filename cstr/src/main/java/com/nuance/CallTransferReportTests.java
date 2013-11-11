@@ -173,7 +173,16 @@ public class CallTransferReportTests extends Mainpage{
 			Select select = new Select(ABvalue);
 				result= select.isMultiple();
 				if(result&&(!ABfilter)){
-					logger.info("pass");
+					logger.info("A/B filter is present and multi-selectable");
+					List<WebElement> filters=select.getOptions();
+					for(int i=0;filters.size()<0;i++){
+							if(filters.get(i).getText().equals("All"))
+								logger.info("The filter has option: All");
+							else if (filters.get(i).getText().equals("unknown"))
+								logger.info("The filter has option: All");
+								ReportFile.addTestCase("ODI6.x-693:A/B filter: should be in the filter panel", "ODI6.x-693:A/B filter: should be in the filter panel=> Pass");
+					}			
+					
 					ReportFile.addTestCase("ODI6.x-693:A/B filter: should be in the filter panel", "ODI6.x-693:A/B filter: should be in the filter panel=> Pass");
 				}
 				else ReportFile.addTestCase("ODI6.x-693:A/B filter: should be in the filter panel", "ODI6.x-693:A/B filter: should be in the filter panel => Fail");
@@ -199,12 +208,15 @@ public class CallTransferReportTests extends Mainpage{
 			System.out.println(select.getFirstSelectedOption().getText());//default it is all
 			Boolean multi=select.isMultiple();//to check if its multiselectable
 			getAllSelectedOptions();
+			select.selectByValue("All");
 			//System.out.println(select.getAllSelectedOptions().get(0).getText());
 			if (allOptions.size() < 0)//list of options
 				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Fail");
 			else if(!"All".equals(x))//string not equal comparision(starts from all)
 				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Fail");
 			else if (!multi)
+				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Fail");
+			else if (!select.getFirstSelectedOption().equals("None"))
 				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Fail");
 			else//if all are conditions above are false then this else executes 
 				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Pass");
@@ -219,7 +231,7 @@ public class CallTransferReportTests extends Mainpage{
 		 List<WebElement> selectOptions = selectBox.getAllSelectedOptions(); 
 		 for (WebElement temp : selectOptions) 
 		 {
-			 System.out.println("getText" + temp.getText()); 
+			 System.out.println("getText:" + temp.getText()); 
 		 } 
 	 } 
 		//697
@@ -434,11 +446,11 @@ public class CallTransferReportTests extends Mainpage{
 					break;
 				}
 			}
-			ReportFile.addTestCase("ODI6.x-618:Labeling of Call Stat Summary filters", "ODI6.x-618:Labeling of Call Stat Summary filters => Pass");
+			ReportFile.addTestCase("ODI6.x-690:CTR-GUI:Inbound Calls", "ODI6.x-690:CTR-GUI:Inbound Calls=> Pass");
 		}catch(NoSuchElementException e)
 		{
 			e.printStackTrace();
-			ReportFile.addTestCase("ODI6.x-618:Labeling of Call Stat Summary filters", "ODI6.x-618:Labeling of Call Stat Summary filters => Fail");
+			ReportFile.addTestCase("ODI6.x-690:CTR-GUI:Inbound Calls", "ODI6.x-690:CTR-GUI:Inbound Calls => Fail");
 		} 
 		ReportFile.WriteToFile();
 		driver.switchTo().defaultContent();
@@ -462,6 +474,59 @@ public class CallTransferReportTests extends Mainpage{
 	public void treeView(){
 		choosedomain("METROPCS");
 		transferReport();
+		int appLeft = 0;
+		int dnis1Left=0;
+		int destinationGroupLeft=0;
+		int destinationNumberLeft=0;
+		int dnis2Left=0;
+		try{
+			
+			driver.findElement(By.id("PARAM_START_DATE")).clear();
+			removeAlert();
+			driver.findElement(By.id("PARAM_START_DATE")).sendKeys("10/24/2013");
+			driver.findElement(By.id("PARAM_END_DATE")).clear();
+			removeAlert();
+			driver.findElement(By.id("PARAM_END_DATE")).sendKeys("10/25/2013");
+			submit.click();
+			/**/
+			driver.switchTo().defaultContent();
+			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewercridreportpage")));
+			Boolean content=page.findElements(By.xpath("//*[contains(text(),'No')]")).size()>0;
+			if(!content)
+			{
+			//WebElement x = page.findElement(By.xpath("//span[contains(text(),'From')]"));
+			List<WebElement> alldiv = page.findElements(By.tagName("div"));
+			for(int j=85; j<alldiv.size(); j++)
+			{
+				//System.out.println(alldiv.get(j).getCssValue("top")+ ":"+j);
+				//System.out.println(alldiv.get(j).getCssValue("text-align"));
+				System.out.println(alldiv.get(j).getText()+ ":"+j);
+				//if(alldiv.get(j).getText()
+				if(alldiv.get(j).getText().equals("CARE")&&(!alldiv.get(j).getCssValue("left").equals("auto"))) 
+					appLeft = Integer.valueOf(alldiv.get(j).getCssValue("left").replaceAll("\\D",""));
+				else if(alldiv.get(j).getText().equals("000-000-0000")&&(!alldiv.get(j).getCssValue("left").equals("auto")))
+					dnis1Left = Integer.valueOf(alldiv.get(j).getCssValue("left").replaceAll("\\D",""));
+				else if(alldiv.get(j).getText().equals("Default")&&(!alldiv.get(j).getCssValue("left").equals("auto")))
+					destinationGroupLeft = Integer.valueOf(alldiv.get(j).getCssValue("left").replaceAll("\\D",""));
+				else if(alldiv.get(j).getText().equals("tel-:83-2626")&&(!alldiv.get(j).getCssValue("left").equals("auto")))
+					destinationNumberLeft = Integer.valueOf(alldiv.get(j).getCssValue("left").replaceAll("\\D",""));
+				else if(alldiv.get(j).getText().equals("888-888-8888")&&(!alldiv.get(j).getCssValue("left").equals("auto")))
+					dnis2Left = Integer.valueOf(alldiv.get(j).getCssValue("left").replaceAll("\\D",""));
+				logger.info("Left:"+appLeft+"dnis1left:"+dnis1Left+"DGL:"+destinationGroupLeft+"DNL:"+destinationNumberLeft+"d2l:"+dnis2Left);
+			}
+			if(dnis1Left>appLeft && dnis1Left<destinationGroupLeft)
+				if(destinationGroupLeft>dnis1Left && destinationGroupLeft<destinationNumberLeft)
+					if(dnis2Left>appLeft && dnis2Left<destinationGroupLeft)
+					logger.info("pass");	
+			}
+		}catch(NoSuchElementException e){
+			logger.info("fail");
+		}
+	}
+	/*public void treeView(){
+		choosedomain("METROPCS");
+		transferReport();
 		try{
 			submit.click();
 			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
@@ -477,8 +542,8 @@ public class CallTransferReportTests extends Mainpage{
 		}catch(NoSuchElementException e){
 			ReportFile.addTestCase("ODI6.x-699:Verify the Language filter is not missing", "ODI6.x-692:Verify the Language filter is not missing=> Fail");
 		}
-	}
-	//700//oct 24 and OCT25
+	}*/
+	//700//oct 24 and OCT25 i think here i have to compare the config.properties file to the crystal report or else what i am doing here is just reading config.properties file
 	public void ApplicationNet(){
 		Properties prop = new Properties();
 		try {
@@ -551,31 +616,37 @@ public class CallTransferReportTests extends Mainpage{
 	//706
 	public void rightAlign(){
 		//706 right aligned
-		//choosedomain("METROPCS");
-		//transferReport();
+		choosedomain("METROPCS");
+		transferReport();
 		try{
-			/*driver.findElement(By.id("PARAM_START_DATE")).clear();
+			driver.findElement(By.id("PARAM_START_DATE")).clear();
 			removeAlert();
-			driver.findElement(By.id("PARAM_START_DATE")).sendKeys("8/11/2013");
+			driver.findElement(By.id("PARAM_START_DATE")).sendKeys("10/24/2013");
 			driver.findElement(By.id("PARAM_END_DATE")).clear();
 			removeAlert();
-			driver.findElement(By.id("PARAM_END_DATE")).sendKeys("9/11/2013");
+			driver.findElement(By.id("PARAM_END_DATE")).sendKeys("10/25/2013");
 			driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
 			/* */
 			driver.switchTo().defaultContent();
 			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
 			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewercridreportpage")));
+			Boolean content=page.findElements(By.xpath("//*[contains(text(),'No')]")).size()>0;
+			if(!content)
+			{
 			WebElement x = page.findElement(By.xpath("//span[contains(text(),'From')]"));
 			List<WebElement> alldiv = page.findElements(By.tagName("div"));
 			System.out.println(alldiv.get(0).getText());
 			for(int j=0; j<alldiv.size(); j++)
 			{
-				System.out.println(alldiv.get(j).getCssValue("top"));
+				System.out.println(alldiv.get(j).getCssValue("top")+ ":"+j);
 				System.out.println(alldiv.get(j).getCssValue("text-align"));
-				System.out.println(alldiv.get(j).getText());
+				System.out.println(alldiv.get(j).getText()+ ":"+j);
+				//if(alldiv.get(j).getText()
 				
 			}
-			
+			}
+			else ReportFile.addTestCase("ODI6.x-700:CTR-GUI : Application /Application Entry Point - Net Total", "ODI6.x-700:CTR-GUI : Application /Application Entry Point - Net Total=> Fail");
+			driver.quit();
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -657,6 +728,8 @@ public class CallTransferReportTests extends Mainpage{
 			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
 			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
 			boolean headingf = page.findElements(By.xpath("//span[contains(text(),'Destination')]")).size()<0;
+//			int i = page.findElements(By.xpath("//span[contains(text(),'Destination')]")).size();
+//			System.out.println(i);
 			if (headingf)
 				heading = page.findElement(By.xpath("//span[contains(text(),'Destination')]"));
 			else
