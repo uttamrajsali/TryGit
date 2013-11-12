@@ -1,6 +1,8 @@
 package com.nuance;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import net.sourceforge.htmlunit.corejs.javascript.tools.debugger.Main;
@@ -17,9 +19,6 @@ public class SelectTimeRange extends Mainpage{
 	
 	public static Logger logger = LoggerFactory.getLogger(Main.class);
 	
-	private String content;
-	boolean flag = false;
-	private String contentValue;
 	public SelectTimeRange(){
 	gotomainpage();
 	}
@@ -241,7 +240,6 @@ public class SelectTimeRange extends Mainpage{
 		WebElement tag=page.findElement(By.xpath("//*[contains(text(),'DNIS:')]"));
 		String filter = tag.getText();
 		if(filter.equals(String.format("DNIS: %s", selectText )))
-			if(tag != null)
 			{
 			logger.info(String.format("DNIS: %s", selectText )+" is present");
 			ReportFile.addTestCase("ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result", "ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result => Pass");
@@ -277,6 +275,7 @@ public class SelectTimeRange extends Mainpage{
 		choosedomain("METROPCS");
 		int CallVolumeValue =0, TransfersValue = 0, PeakHourValue = 0;
 		double roundOff =0, AverageCallValue =0;
+		boolean flag;
 		//choosedomain("US_AIRWAYS");
 		cssrReport();
 		pickAvalidDate("08/01/2013","09/01/2013");
@@ -355,65 +354,71 @@ public class SelectTimeRange extends Mainpage{
 	
 	//ODI6.x-628:Number formatting
 	public void numberFormat () {
+		String content;
 		choosedomain("METROPCS");
 		cssrReport();
 		pickAvalidDate("08/01/2013","09/01/2013");
-		boolean result1 = false;
+		boolean result = false;
+		String contentValue;
 		try{
 			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
 			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
 			List<WebElement> check= page.findElements(By.tagName("span"));
 			for(int i=0;i<check.size();i++)
 			{
-				result1=true;
+				result=true;
 				content=check.get(i).getText();
+				//for all counts number(call volume and transfers(All) )
 				if(content.equals("Call Volume")){
 					contentValue = check.get(i+1).getText();
-					decimalcheck(contentValue, "example", 0);
+					result=USformatCheck(contentValue);
 				}
+				else if(content.equals("Transfers (All)"))
+				{
+					contentValue=check.get(i+1).getText();
+					result=USformatCheck(contentValue);
+				}	
 				else if(content.equals("Call Duration (minutes)"))
 				{
 					contentValue=check.get(i+1).getText();
-					decimalcheck(contentValue, "In call duration", 2);	
+					result=decimalcheck(contentValue, "In call duration", 2);	
 				}
 				else if(content.equals("Average Call Duration (minutes)"))
 				{
 					contentValue=check.get(i+1).getText();
-					decimalcheck(contentValue,"In average call duration",2 );
+					result =decimalcheck(contentValue,"In average call duration",2 );
 				}				
 				else if(content.equals("Average Call Duration for Transferred Calls (minutes)"))
 				{
 					contentValue=check.get(i+1).getText();
-					decimalcheck(contentValue, "In average call duration for transfered calls", 2);	
+					result=decimalcheck(contentValue, "In average call duration for transfered calls", 2);	
 				}
 				else if(content.equals("Peak Hour Average Call Duration (minutes)"))
 				{
 					contentValue=check.get(i+1).getText();
-					decimalcheck(contentValue, "In peak hour average call duration", 2);
+					result=decimalcheck(contentValue, "In peak hour average call duration", 2);
 				}
 				else if (content.equals("Average Weekly Call Volume")){
 					contentValue=check.get(i+1).getText();
-					decimalcheck(contentValue, "Average Weekly call volume", 1);
+					result=decimalcheck(contentValue, "Average Weekly call volume", 1);
 				}
 
 				else if (content.equals("Transfer Rate (All)")){
 					String percentage=check.get(i+1).getText();
 					String[] contentValues= percentage.split("%"); 
 					contentValue= contentValues[0];
-					decimalcheck(contentValue, "In Transfer Rate ", 1);
+					result=decimalcheck(contentValue, "In Transfer Rate ", 1);
 				}
 				else if(content.equals("Containment Rate (All)")){
 					String percentage=check.get(i+1).getText();
 					String[] contentValues= percentage.split("%"); 
 					contentValue= contentValues[0];
-					decimalcheck(contentValue, "In Containment Rate ", 1);
+					result=decimalcheck(contentValue, "In Containment Rate ", 1);
 				}
-				else{
-					result1 = false;
-					ReportFile.addTestCase("ODI6.x-628:CSSR numbers Formatting", "ODI6.x-628:CSSR numbers Formatting => Fail");
-				}
+				else
+					result = false;
 			}
-			if(result1)
+			if(result)
 			ReportFile.addTestCase("ODI6.x-628:CSSR numbers Formatting", "ODI6.x-628:CSSR numbers Formatting => Pass");
 		}catch(Exception e)
 		{
@@ -426,23 +431,35 @@ public class SelectTimeRange extends Mainpage{
 	}
 
 	//Method to invoke decimal checking in the above method
-	private void decimalcheck(String x, String y, int z) {
-		String[] contents = x.split("\\s");
+	private boolean decimalcheck(String wholeString, String logText, int precision) {
+		String[] contents = wholeString.split("\\s");
 		double contentsConvert= Double.parseDouble(contents[1]);
-		if (checkDecimalPlaces(contentsConvert, z) == true){
-			logger.info(y+" "+ "we have found the decimals with "+ z +" precision");
+		if (checkDecimalPlaces(contentsConvert, precision) == true){
+			logger.info(logText+" "+ "we have found the decimals with "+ precision +" precision");
 		}
+		else return false;
+		return true;
+		
 	}
 	
 
 	//Method that checks for 2 decimal places in above function
-	public boolean checkDecimalPlaces (double d, int decimalPlaces){
-		if (d==0) return true;
+	public boolean checkDecimalPlaces (double digit, int decimalPlaces){
+		if (digit==0) return true;
 	    double multiplier = Math.pow(10, decimalPlaces); 
-	    double check  =  d * multiplier;
+	    double check  =  digit * multiplier;
 	    check = Math.round(check);  	
 	    check = check/multiplier; 
-		return (d==check);
+		return (digit==check);
+	}
+	public boolean USformatCheck(String x){
+		String[] contents = x.split("\\s");	
+		String regex = "^[0-9]{1,3}(?:,[0-9]{3})*$";
+		boolean isMatched = contents[1].matches(regex);
+		//	boolean f ="12".equals(nf_us);
+	//	boolean a = contentsConvert.equals(nf_us.isGroupingUsed());
+	//	boolean b = "1,000".equals(nf_us.isGroupingUsed());
+		return isMatched;
 		
 	}
 	//631

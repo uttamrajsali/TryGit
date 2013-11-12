@@ -58,7 +58,6 @@ public class Timestep extends Mainpage {
 				logger.info("Report for selected range is showed");
 				ReportFile.addTestCase("ODI6.x-646:CSTR - Search", "ODI6.x-646:CSTR - Search=> Pass");
 				}
-			ReportFile = new WriteXmlFile();
 			}
 			catch (NoSuchElementException e)
 			{
@@ -69,66 +68,6 @@ public class Timestep extends Mainpage {
 		driver.switchTo().defaultContent();
 		gotomainpage();
 		}
-		
-	/*public void Search()
-	{
-		//TrendReport();
-		
-		try {
-			WebElement timeRange = driver.findElement(By.id("date_range"));
-			Select select = new Select(timeRange);
-			select.selectByValue("l7d");
-			
-			WebElement timesteps = driver.findElement(By.id("PARAM_TIME_STEP"));
-			timesteps.click();
-			
-			select = new Select(timesteps); 
-			select.selectByValue("DAY");
-			
-			submit.click();
-		} catch (NoSuchElementException e)
-		{
-			gotomainpage();
-			Search();
-		}
-		
-		new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
-		WebElement reportpage = new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewercridreportpage")));
-		
-		
-		List<WebElement> week = reportpage.findElements(By.tagName("div"));
-		int startpos  = 0, endpos = 0;		
-		
-		for (int i = 0;i < week.size(); i++)
-		{				
-			logger.info(week.get(i).getText() + "    " + i);
-			if (week.get(i).getText().equals("Day"))
-				startpos = i;
-			else if(week.get(i).getText().equals("Additional Filters:")) {
-				endpos = i;
-				break;
-			}
-			else if(week.get(i).getText().equals("[Note: week of end date is partial.]")) {
-				endpos = i; 
-				break;
-			}
-			else if(week.get(i).getText().equals("[Note: weeks  of start date and end date are partial.]")) {
-				endpos = i;
-				break;
-			}
-		}
-		
-		startpos +=43;
-		logger.info("start" + startpos);
-		} catch (NoSuchElementException e)
-		{
-			logger.info("fail");
-		}
-		driver.switchTo().defaultContent();
-		gotomainpage();//forgot to call this inorder to work for another function
-		
-	}
-	*/
 	
 	//	ODI6.x-650:Report look'n Feel: Enhancement from Portal
 	public void EnhancementFromPortal()
@@ -147,29 +86,16 @@ public class Timestep extends Mainpage {
 			select.selectByValue("WEEK");
 			
 			submit.click();
-		/*} catch (NoSuchElementException e)
-		{
-			gotomainpage();
-			EnhancementFromPortal();
-		}
-		
-		try{*/
 			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
 			WebElement reportpage = new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewercridreportpage")));
 			WebElement header = reportpage.findElement(By.xpath("//*[contains(text(),'Statistics')]"));
 			if((header.getCssValue("font-family").equals("trebuchet ms"))&&(header.getCssValue("transparent").equals("transparent")))
-			/*	ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify report text should be change font Arial to  font Trebuchet MS (with various) for all text in the reports => Pass");
-			else 
-				ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify report text should be change font Arial to  font Trebuchet MS (with various) for all text in the reports => Fail");
-		*/	
 				ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify use the gradient as the background of the report header => Pass");
 			else 
 				ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify use the gradient as the background of the report header => Fail");
-
-			
 		} catch(NoSuchElementException e)
 		{
-			logger.info("enhancementFromPotal find element exception");
+			logger.info("enhancementFromPotal find element exception"+ e);
 			ReportFile.addTestCase("ODI6.x-650:Report look'n Feel: Enhancement from Portal", "Verify use the gradient as the background of the report header => Fail");
 		} 
 		driver.switchTo().defaultContent();
@@ -181,7 +107,7 @@ public class Timestep extends Mainpage {
 		choosedomain("METROPCS");
 		TrendReport();
 		WebElement ABvalue = null;
-		boolean result,selectValuesPresent;
+		boolean result=false,selectValuesPresent =false;
 		try{
 			boolean isPresent = driver.findElements(By.id("PARAM_APP_VARIANT_ID")).size()>0;
 			if(isPresent){
@@ -190,14 +116,12 @@ public class Timestep extends Mainpage {
 				Select select = new Select(ABvalue);
 				result= select.isMultiple();
 				List<WebElement> selectValues=select.getOptions();
-				selectValuesPresent = false;
 				for (int i=0;i<selectValues.size(); i++)
 				{
 					if(selectValues.get(i).getText().equals("All"))
 					selectValuesPresent =true;
 					else if(selectValues.get(i).getText().equals("UNKNOWN"))
 					selectValuesPresent = true;
-					else selectValuesPresent =false;
 				}	
 				if(result&&selectValuesPresent)
 					ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Pass");
@@ -1230,7 +1154,139 @@ public class Timestep extends Mainpage {
 		return result;
 		
 	}
+	public void numberFormat () {
+		String content;
+		choosedomain("METROPCS");
+		TrendReport();
+		setTime("random");
+		boolean result = false;
+		String contentValue;
+		try{
+			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+			List<WebElement> check= page.findElements(By.tagName("span"));
+			for(int i=0;i<check.size();i++)
+			{
+				result=true;
+				content=check.get(i).getText();
+				//for all counts number(call volume and transfers(All) )
+				if(content.equals("Call Volume")){
+					contentValue = check.get(i+1).getText();
+					result=USformatCheck(contentValue);
+				}
+				else if(content.equals("Transfers (All)"))
+				{
+					contentValue=check.get(i+1).getText();
+					result=USformatCheck(contentValue);
+				}	
+				else if(content.equals("Call Duration (minutes)"))
+				{
+					contentValue=check.get(i+1).getText();
+					result=decimalcheck(contentValue, "In call duration", 2);	
+				}
+				else if(content.equals("Average Call Duration (minutes)"))
+				{
+					contentValue=check.get(i+1).getText();
+					result =decimalcheck(contentValue,"In average call duration",2 );
+				}				
+				else if(content.equals("Average Call Duration for Transferred Calls (minutes)"))
+				{
+					contentValue=check.get(i+1).getText();
+					result=decimalcheck(contentValue, "In average call duration for transfered calls", 2);	
+				}
+				else if(content.equals("Peak Hour Average Call Duration (minutes)"))
+				{
+					contentValue=check.get(i+1).getText();
+					result=decimalcheck(contentValue, "In peak hour average call duration", 2);
+				}
+				else if (content.equals("Average Weekly Call Volume")){
+					contentValue=check.get(i+1).getText();
+					result=decimalcheck(contentValue, "Average Weekly call volume", 1);
+				}
+
+				else if (content.equals("Transfer Rate (All)")){
+					String percentage=check.get(i+1).getText();
+					String[] contentValues= percentage.split("%"); 
+					contentValue= contentValues[0];
+					result=decimalcheck(contentValue, "In Transfer Rate ", 1);
+				}
+				else if(content.equals("Containment Rate (All)")){
+					String percentage=check.get(i+1).getText();
+					String[] contentValues= percentage.split("%"); 
+					contentValue= contentValues[0];
+					result=decimalcheck(contentValue, "In Containment Rate ", 1);
+				}
+				else
+					result = false;
+			}
+			if(result)
+			ReportFile.addTestCase("ODI6.x-628:CSSR numbers Formatting", "ODI6.x-628:CSSR numbers Formatting => Pass");
+		}catch(Exception e)
+		{
+			ReportFile.addTestCase("ODI6.x-628:CSSR numbers Formatting", "ODI6.x-628:CSSR numbers Formatting => Fail");
+			e.printStackTrace();
+		}
+		driver.switchTo().defaultContent();
+		gotomainpage();
+		//driver.quit();
+	}
+
+	//Method to invoke decimal checking in the above method
+	private boolean decimalcheck(String wholeString, String logText, int precision) {
+		String[] contents = wholeString.split("\\s");
+		double contentsConvert= Double.parseDouble(contents[1]);
+		if (checkDecimalPlaces(contentsConvert, precision) == true){
+			logger.info(logText+" "+ "we have found the decimals with "+ precision +" precision");
+		}
+		else return false;
+		return true;
+		
+	}
 	
+
+	//Method that checks for 2 decimal places in above function
+	public boolean checkDecimalPlaces (double digit, int decimalPlaces){
+		if (digit==0) return true;
+	    double multiplier = Math.pow(10, decimalPlaces); 
+	    double check  =  digit * multiplier;
+	    check = Math.round(check);  	
+	    check = check/multiplier; 
+		return (digit==check);
+	}
+	public boolean USformatCheck(String x){
+		String[] contents = x.split("\\s");	
+		String regex = "^[0-9]{1,3}(?:,[0-9]{3})*$";
+		boolean isMatched = contents[1].matches(regex);
+		//	boolean f ="12".equals(nf_us);
+	//	boolean a = contentsConvert.equals(nf_us.isGroupingUsed());
+	//	boolean b = "1,000".equals(nf_us.isGroupingUsed());
+		return isMatched;
+		
+	}
+	//679
+		public void noData(){
+			transferReport();
+			try{
+				setTime("noData");			
+				driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+				new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+				WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewercridreportpage")));
+				WebElement content=page.findElement(By.xpath("//*[contains(text(),'No')]"));
+				String data=content.getText();
+				logger.info(data);
+				if("No data was found for the selected criteria.".equals(data))
+				ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information=> Pass");
+				else ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information=> Fail");
+			}catch (NoSuchElementException e)
+			{
+				e.printStackTrace();
+				ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information => Fail");
+			}
+			ReportFile.WriteToFile();
+			driver.switchTo().defaultContent();
+			gotomainpage();
+		}
+
 	//ODI6.x-682:CSTR: Trend Report Layout
 	public boolean ReportLayout() {
 		
@@ -1557,30 +1613,7 @@ public class Timestep extends Mainpage {
 	public void exitdriver(){
 		driver.quit();
 	}
-	//679
-	public void noData(){
-		transferReport();
-		try{
-			setTime("noData");			
-			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
-			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewercridreportpage")));
-			WebElement content=page.findElement(By.xpath("//*[contains(text(),'No')]"));
-			String data=content.getText();
-			logger.info(data);
-			if("No data was found for the selected criteria.".equals(data))
-			ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information=> Pass");
-			else ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information=> Fail");
-		}catch (NoSuchElementException e)
-		{
-			e.printStackTrace();
-			ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information => Fail");
-		}
-		ReportFile.WriteToFile();
-		driver.switchTo().defaultContent();
-		gotomainpage();
-	}
-
+	
 	
 }
 	

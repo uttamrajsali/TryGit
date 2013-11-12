@@ -60,7 +60,7 @@ public class CallTransferReportTests extends Mainpage{
 			}
 		}catch(NoSuchElementException e)
 		{
-			e.printStackTrace();
+			logger.info("Caught NoSuchElementException:"+ e.getMessage());
 			ReportFile.addTestCase("ODI6.x-686:CTR-GUI:Transfer Calls", "ODI6.x-686:CTR-GUI:Transfer Calls => Fail");
 		} 
 		ReportFile.WriteToFile();
@@ -89,7 +89,7 @@ public class CallTransferReportTests extends Mainpage{
 			else ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information=> Fail");
 		}catch (NoSuchElementException e)
 		{
-			e.printStackTrace();
+			logger.info("Caught NoSuchElementException:"+ e.getMessage());
 			ReportFile.addTestCase("ODI6.x-688:veriry the empty report information", "ODI6.x-688:veriry the empty report information => Fail");
 		}
 		ReportFile.WriteToFile();
@@ -196,35 +196,47 @@ public class CallTransferReportTests extends Mainpage{
 		gotomainpage();
 	}
 	//696 have to rearrange reportfile
-	public void newLookDnis(){
-		choosedomain("US_AIRWAYS");
+	public void DNISFilterNewLook()
+	{
+		choosedomain("METROPCS");
 		transferReport();
+		WebElement DNIS;
+		Select select;
 		try{
-			WebElement DNISvalue = driver.findElement(By.id("PARAM_DNIS"));
-			List<WebElement> allOptions = DNISvalue.findElements(By.tagName("option"));
-			String x=allOptions.get(0).getText();
-			System.out.println(x);
-			Select select = new Select(DNISvalue);
-			System.out.println(select.getFirstSelectedOption().getText());//default it is all
-			Boolean multi=select.isMultiple();//to check if its multiselectable
-			getAllSelectedOptions();
-			select.selectByValue("All");
-			//System.out.println(select.getAllSelectedOptions().get(0).getText());
-			if (allOptions.size() < 0)//list of options
-				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Fail");
-			else if(!"All".equals(x))//string not equal comparision(starts from all)
-				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Fail");
-			else if (!multi)
-				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Fail");
-			else if (!select.getFirstSelectedOption().equals("None"))
-				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Fail");
-			else//if all are conditions above are false then this else executes 
-				ReportFile.addTestCase("ODI6.x-696:DNIS filter: new look of the drop down list", "ODI6.x-696:DNIS filter: new look of the drop down list => Pass");
-			
-		}catch(Exception e){
-			e.printStackTrace();
-			
+			DNIS = driver.findElement(By.id("PARAM_DNIS"));
+			select = new Select(DNIS);
+			List<WebElement> allop = select.getOptions();
+				for (int i=0;i<allop.size();i++) 
+				{ //iterate over the options
+				    if(allop.size()>0)
+				    	if(allop.get(0).getText().equals("All"))
+				    		if(select.getFirstSelectedOption().equals("All"))//returns the current selected option
+				    			if(select.isMultiple())
+				    			{
+				    				select.selectByValue("All");//select option All
+							    	if(select.getFirstSelectedOption().equals("All"))
+							    		ReportFile.addTestCase("ODI6.x-622:DNIS filter: new look of the drop down list", "ODI6.x-622:DNIS filter: new look of the drop down list=> Pass");
+							    	else
+							    		ReportFile.addTestCase("ODI6.x-622:DNIS filter: new look of the drop down list", "ODI6.x-622:DNIS filter: new look of the drop down list => Fail");
+				    			}
+							    else
+							    	ReportFile.addTestCase("ODI6.x-622:DNIS filter: new look of the drop down list", "ODI6.x-622:DNIS filter: new look of the drop down list => Fail");
+				    		else
+				    			ReportFile.addTestCase("ODI6.x-622:DNIS filter: new look of the drop down list", "ODI6.x-622:DNIS filter: new look of the drop down list => Fail");
+				    	else
+				    		ReportFile.addTestCase("ODI6.x-622:DNIS filter: new look of the drop down list", "ODI6.x-622:DNIS filter: new look of the drop down list => Fail");
+				    else
+				    	ReportFile.addTestCase("ODI6.x-622:DNIS filter: new look of the drop down list", "ODI6.x-622:DNIS filter: new look of the drop down list => Fail");
+				}
+				
+		} catch (NoSuchElementException e)
+		{
+			ReportFile.addTestCase("ODI6.x-622:DNIS filter: new look of the drop down list", "ODI6.x-622:DNIS filter: new look of the drop down list => Fail");
 		}
+		driver.switchTo().defaultContent();
+		ReportFile.WriteToFile();	
+		gotomainpage();	
+		
 	}
 	 public void getAllSelectedOptions() { 
 		 Select selectBox = new Select( driver.findElement(By.id("PARAM_DNIS")));
@@ -236,31 +248,31 @@ public class CallTransferReportTests extends Mainpage{
 	 } 
 		//697
 	public void dnisfilter(){
-		
 		choosedomain("US_AIRWAYS");
 		transferReport();
 		try{
+		driver.switchTo().defaultContent();
 		WebElement DNISvalue = driver.findElement(By.id("PARAM_DNIS"));
 		Select select = new Select(DNISvalue);
 		select.deselectAll();
-		select.selectByValue("2404953077");
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);//submit should be clickable if delay is there in selecting the DNIS
+		select.selectByIndex(1);
+		String selectText = select.getFirstSelectedOption().getText();
 		submit.click();
 		new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
 		WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
-		WebElement tag=page.findElement(By.xpath("//*[contains(text(),'2404953077')]"));
-			if(tag != null)
+		WebElement tag=page.findElement(By.xpath("//*[contains(text(),'DNIS:')]"));
+		String filter = tag.getText();
+		if(filter.equals(String.format("DNIS: %s", selectText )))
 			{
-			logger.info("DNIS:2404953077 filter is present");
-			ReportFile.addTestCase("ODI6.x-697:DNIS filter: selected DNIS filter should be shown in report result", "ODI6.x-697:DNIS filter: selected DNIS filter should be shown in report result => Pass");
+			logger.info(String.format("DNIS: %s", selectText )+" is present");
+			ReportFile.addTestCase("ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result", "ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result => Pass");
 			}
 	
 		}catch (NoSuchElementException e)
 		{
-			ReportFile.addTestCase("ODI6.x-697:DNIS filter: selected DNIS filter should be shown in report result", "ODI6.x-697:DNIS filter: selected DNIS filter should be shown in report result => Fail");
-			
+			ReportFile.addTestCase("ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result", "ODI6.x-623:DNIS filter: selected DNIS filter should be shown in report result => Fail");
+			logger.info("Caught NoSuchElementException:"+ e.getMessage());
 		}
-
 		ReportFile.WriteToFile();
 		driver.switchTo().defaultContent();
 		gotomainpage();
@@ -460,9 +472,9 @@ public class CallTransferReportTests extends Mainpage{
 	//public void languageFilter(String test){ and pass the test number to choose domain method if it fails it will print the testcase failed due to no such domain
 	//or if we can also push this test name t reportFile.addtest case to update if a testcase is failed
 	public void languageFilter(){	
-	choosedomain("FEDEX");
-		transferReport();
 		try{
+			choosedomain("FEDEX");
+			transferReport();
 			WebElement Language = driver.findElement(By.id("PARAM_LOCALE"));
 			ReportFile.addTestCase("ODI6.x-692:Verify the Language filter is not missing", "ODI6.x-692:Verify the Language filter is not missing=> Pass");
 		}catch(NoSuchElementException e){
@@ -504,7 +516,7 @@ public class CallTransferReportTests extends Mainpage{
 				System.out.println(alldiv.get(j).getText()+ ":"+j);
 				//if(alldiv.get(j).getText()
 				if(alldiv.get(j).getText().equals("CARE")&&(!alldiv.get(j).getCssValue("left").equals("auto"))) 
-					appLeft = Integer.valueOf(alldiv.get(j).getCssValue("left").replaceAll("\\D",""));
+					appLeft = Integer.valueOf(alldiv.get(j).getCssValue("left").replaceAll("\\D","")); //replaces the pixel 'px' with empty space
 				else if(alldiv.get(j).getText().equals("000-000-0000")&&(!alldiv.get(j).getCssValue("left").equals("auto")))
 					dnis1Left = Integer.valueOf(alldiv.get(j).getCssValue("left").replaceAll("\\D",""));
 				else if(alldiv.get(j).getText().equals("Default")&&(!alldiv.get(j).getCssValue("left").equals("auto")))
@@ -820,37 +832,77 @@ public class CallTransferReportTests extends Mainpage{
 		driver.switchTo().defaultContent();
 		gotomainpage();
 }
+	//720
+	public void ListBoxApplicationEntry(){
+		transferReport();
+		try{
+			boolean appId = driver.findElements(By.id("PARAM_APP_ID")).size()>0;
+			if (appId)
+				ReportFile.addTestCase("ODI6.x-720:CTR-GUI-112:List Box Application Entry Point", "ODI6.x-720:CTR-GUI-112:List Box Application Entry Point=> Pass");
+			else
+				ReportFile.addTestCase("ODI6.x-720:CTR-GUI-112:List Box Application Entry Point", "ODI6.x-720:CTR-GUI-112:List Box Application Entry Point=> Fail");
+		}catch(NoSuchElementException e){
+		logger.info("Caught NoSuchElementException:"+ e.getMessage());
+		ReportFile.addTestCase("ODI6.x-720:CTR-GUI-112:List Box Application Entry Point", "ODI6.x-720:CTR-GUI-112:List Box Application Entry Point=> Fail");
+		}
+	}
+	
 	//721
 	public void applicationMultiSelectable(){
 		transferReport();
 		try{
-			//pickAvalidDate();
+			driver.findElement(By.id("PARAM_START_DATE")).clear();
+			removeAlert();
+			driver.findElement(By.id("PARAM_START_DATE")).sendKeys("8/11/2013");
+			driver.findElement(By.id("PARAM_END_DATE")).clear();
+			removeAlert();
+			driver.findElement(By.id("PARAM_END_DATE")).sendKeys("9/11/2013");
 			WebElement filterSelect = driver.findElement(By.id("PARAM_APP_ID"));
 			Select select = new Select(filterSelect);
 			select.deselectAll();
 			select.selectByIndex(1);
 			select.selectByIndex(2);
 			List<WebElement> options =select.getOptions();
-			System.out.println(options.get(1).getText());
+			String app1 = options.get(1).getText();
+			String app2 = options.get(2).getText();
+			submit.click();
+			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+			WebElement appFilter = page.findElement(By.xpath("//span[contains(text(),'Application:')]"));
+			logger.info(appFilter.getText()+":"+app1+":"+app2);
+			WebElement rangeStart=page.findElement(By.xpath("//*[contains(text(),'8/11/2013')]"));
+			WebElement rangeEnd=page.findElement(By.xpath("//*[contains(text(),'9/11/2013')]"));
+			if(rangeStart!=null&&rangeEnd!=null)
+				if(appFilter.getText().contains(app1))
+					if(appFilter.getText().contains(app2))
+					{
+						logger.info(appFilter.getText());
+						ReportFile.addTestCase("ODI6.x-721:CTR-GUI-112:Functionaliy of multi select Box for Application Entry Point", "ODI6.x-721:CTR-GUI-112:Functionaliy of multi select Box for Application Entry Point=> Pass");
+					}
+			else
+						ReportFile.addTestCase("ODI6.x-721:CTR-GUI-112:Functionaliy of multi select Box for Application Entry Point", "ODI6.x-721:CTR-GUI-112:Functionaliy of multi select Box for Application Entry Point=> Fail");
 			//submit.click();
 			//same as search() the time string
 		}catch (Exception e)
 		{
-			e.printStackTrace();
-			logger.info("Exception");
-			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
-			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+			ReportFile.addTestCase("ODI6.x-721:CTR-GUI-112:Functionaliy of multi select Box for Application Entry Point", "ODI6.x-721:CTR-GUI-112:Functionaliy of multi select Box for Application Entry Point=> Fail");
+			logger.info("Caught NoSuchElementException:"+ e.getMessage());
 			
 		}
 	}
 	//722 
 	public void consistency(){
-	transferReport();
 	try{
+		transferReport();
 		WebElement filterSelect = driver.findElement(By.id("PARAM_APP_ID"));
-		Select select = new Select(filterSelect);
-		List<WebElement> options =select.getOptions();
-		
+		Select select1 = new Select(filterSelect);
+		List<WebElement> options1 =select1.getOptions();
+		gotomainpage();
+		cssrReport();
+		Select select2 = new Select(filterSelect);
+		List<WebElement> options2 =select1.getOptions();
+		if(options1.size()==options2.size())
+//			for(WebElem
 	}catch (Exception e)
 	{
 		e.printStackTrace();
