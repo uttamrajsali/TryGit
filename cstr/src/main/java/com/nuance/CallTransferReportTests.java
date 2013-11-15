@@ -665,6 +665,13 @@ public class CallTransferReportTests extends Mainpage{
 			logger.info("Exception");
 		}
 	}
+	//712
+	/*public void timeRangeLayout(){
+		transferReport();
+		try{
+			
+		}
+	}*/
 	//714
 	public void TransferPercentageCheck(){
 		choosedomain("METROPCS");
@@ -893,16 +900,35 @@ public class CallTransferReportTests extends Mainpage{
 	//722 
 	public void consistency(){
 	try{
+		List<String>a = new ArrayList<String>(); //line 678
+		List<String>b = new ArrayList<String>(); //line 678
 		transferReport();
 		WebElement filterSelect = driver.findElement(By.id("PARAM_APP_ID"));
 		Select select1 = new Select(filterSelect);
 		List<WebElement> options1 =select1.getOptions();
+		for (WebElement x: options1)
+		{
+		
+			a.add(x.getText());
+		}
 		gotomainpage();
 		cssrReport();
-		Select select2 = new Select(filterSelect);
-		List<WebElement> options2 =select1.getOptions();
-		if(options1.size()==options2.size())
-//			for(WebElem
+		WebElement filterSelect2 = driver.findElement(By.id("PARAM_APP_ID"));
+		Select select2 = new Select(filterSelect2);
+		List<WebElement> options2 =select2.getOptions();
+		for (WebElement y: options2)
+		{
+			
+			b.add(y.getText());
+		}
+		logger.info(a.get(1));
+		if(a.size()==b.size())
+			for (int i=0;i<a.size();i++)
+			{
+				logger.info(a.get(i)+b.get(i));
+				if (a.get(i).equals(b.get(i)))
+					logger.info("pass");
+			}
 	}catch (Exception e)
 	{
 		e.printStackTrace();

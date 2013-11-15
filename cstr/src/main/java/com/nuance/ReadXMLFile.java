@@ -16,9 +16,7 @@ public class ReadXMLFile {
   public static void main(String args[]) {
  
     try {
-   	Login logintest = new Login();
-    logintest.execute();
-    File fXmlFile = new File("testcases.xml");
+   	File fXmlFile = new File("testcases.xml");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(fXmlFile);

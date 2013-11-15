@@ -87,7 +87,7 @@ public class SelectTimeRange extends Mainpage{
 	}
 	
 	//Method that I invoke in findlablesfilter() function 
-	private boolean isElementpresent(String name, By by){
+	public boolean isElementpresent(String name, By by){
 		try
 		{
 			if(driver.findElements(by).isEmpty())
@@ -185,10 +185,7 @@ public class SelectTimeRange extends Mainpage{
 		try{
 			DNIS = driver.findElement(By.id("PARAM_DNIS"));
 			select = new Select(DNIS);
-			//WebElement firstOption = select.getFirstSelectedOption();
-			//if (firstOption.getText().equals("All"))
-			
-				List<WebElement> allop = select.getOptions();
+			List<WebElement> allop = select.getOptions();
 				for (int i=0;i<allop.size();i++) 
 				{ //iterate over the options
 				    if(allop.size()>0)
@@ -256,8 +253,6 @@ public class SelectTimeRange extends Mainpage{
 	}
 	
 	
-
-	
 	//Method for selecting a date
 	public void pickAvalidDate (String startDate, String endDate){
 		driver.findElement(By.id("PARAM_START_DATE")).clear();
@@ -271,12 +266,10 @@ public class SelectTimeRange extends Mainpage{
 	
 	//ODI6.x-627:generate cssr report with valid filters and check the number if they are reasonable
 	public void cssrNumbers (){
-		
 		choosedomain("METROPCS");
 		int CallVolumeValue =0, TransfersValue = 0, PeakHourValue = 0;
 		double roundOff =0, AverageCallValue =0;
 		boolean flag;
-		//choosedomain("US_AIRWAYS");
 		cssrReport();
 		pickAvalidDate("08/01/2013","09/01/2013");
 		try{
@@ -431,7 +424,7 @@ public class SelectTimeRange extends Mainpage{
 	}
 
 	//Method to invoke decimal checking in the above method
-	private boolean decimalcheck(String wholeString, String logText, int precision) {
+	public boolean decimalcheck(String wholeString, String logText, int precision) {
 		String[] contents = wholeString.split("\\s");
 		double contentsConvert= Double.parseDouble(contents[1]);
 		if (checkDecimalPlaces(contentsConvert, precision) == true){

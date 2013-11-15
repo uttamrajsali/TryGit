@@ -1,5 +1,9 @@
 <?xml version="1.0"?>
 <company>
+	<classname id="com.nuance.Login">
+		<testname>execute</testname>
+	</classname>
+	
 	<classname id="com.nuance.SelectTimeRange">
 		<testname>findthelables</testname>
 		<testname>abfilter</testname>

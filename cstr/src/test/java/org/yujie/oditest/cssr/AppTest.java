@@ -25,14 +25,14 @@ public class AppTest
         super( testName );
         Login logintest = new Login();
         logintest.execute();
-       Timestep selecttest = new Timestep();
-        //SelectTimeRange selectcssrtest = new SelectTimeRange();
-       // CallTransferReportTests x = new CallTransferReportTests();
-       // x.timeRangeCheck();
+        Timestep selecttest = new Timestep();
+        SelectTimeRange selectcssrtest = new SelectTimeRange();
+        CallTransferReportTests x = new CallTransferReportTests();
+        x.consistency();
         //Test cases begins
-        /*selectcssrtest.findthelables();
-        selectcssrtest.search();
-        selectcssrtest.dnisfilter();
+       // selecttest.abfilterselectable();
+      //  selectcssrtest.check();
+ /*       selectcssrtest.dnisfilter();
         selectcssrtest.abfilter();
         selectcssrtest.cssrNumbers();
         selectcssrtest.numberFormat();
@@ -48,7 +48,7 @@ public class AppTest
        // selecttest.monthSelectionSorting();
        // selecttest.quarterSelectionSorting();
         //Exporting the results to HTML
-       selecttest.daySelectionSorting();
+       //selecttest.daySelectionSorting();
        
         GenerateHtml FinalRep = new GenerateHtml();
         FinalRep.execute();
