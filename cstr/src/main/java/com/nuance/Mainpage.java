@@ -44,7 +44,6 @@ public class Mainpage {
 	public Mainpage()
 	{
 		
-		
 		try {
 			user =  new UserInfo("userinfo.xml");
 			}
@@ -156,28 +155,23 @@ public class Mainpage {
 		
 			Set<String> handles = driver.getWindowHandles();
 		
-		for (String handle : handles){
-			if (!mainWinhandler.equals(handle))
-			{
-				WebDriver popup  = driver.switchTo().window(handle);
-				popup.close();
+			for (String handle : handles){
+				if (!mainWinhandler.equals(handle))
+				{
+					WebDriver popup  = driver.switchTo().window(handle);
+					popup.close();
+				}
 			}
-		}
-		
-		driver.switchTo().defaultContent();
-		
-		WebElement submittd = new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("submittd")));
-		submit = submittd.findElement(By.tagName("input"));
-		
-		
+			driver.switchTo().defaultContent();
+			WebElement submittd = new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("submittd")));
+			submit = submittd.findElement(By.tagName("input"));
 			}
-			catch (TimeoutException e)
+			catch (NoSuchElementException e)//something i have to put for breaking this loop
 			{
-				logger.info("timeout exception"); 
+				logger.info("error:"+e.getMessage(),e); 
 				gotomainpage();
 				cssrReport();
-						
-		}
+			}
 	}
 	public void transferReport ()
 	{

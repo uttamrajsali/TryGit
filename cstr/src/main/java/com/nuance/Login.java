@@ -88,8 +88,6 @@ public class Login extends Mainpage{
 	
 		//Timestep x = new Timestep();
 		//x.filterShouldBeSelectable();
-		SelectTimeRange x = new SelectTimeRange();
-		x.abfilterselectable();
 		GenerateHtml FinalRep = new GenerateHtml();
         FinalRep.execute();
 	}

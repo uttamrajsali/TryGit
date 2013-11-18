@@ -25,7 +25,7 @@ public class SelectTimeRange extends Mainpage{
 	//odi.614 Able to generate reports for time range
 	public void search(){
 		cssrReport();
-			try{
+		try{
 			driver.findElement(By.id("PARAM_START_DATE")).clear();
 			removeAlert();
 			driver.findElement(By.id("PARAM_START_DATE")).sendKeys("8/11/2013");
@@ -54,7 +54,7 @@ public class SelectTimeRange extends Mainpage{
 		gotomainpage();
 	}		
 	//odi.618 Method for finding the lables of filters 
-	public void findthelables(){
+	public void findTheLables(){
 		String Element1 = "TimeRange";
 		String Element2 = "StartTime";
 		String Element3 = "EndTime";
@@ -106,7 +106,7 @@ public class SelectTimeRange extends Mainpage{
 		return true;
 	}
 	//619
-	public void abfilterselectable(){
+	public void abFilterSelectable(){
 		choosedomain("METROPCS");
 		cssrReport();
 		WebElement ABvalue = null;
@@ -144,7 +144,7 @@ public class SelectTimeRange extends Mainpage{
 		gotomainpage();
 	}
 	//odi.620 Method that the report footer a/b filter	
-	public void abfilter(){
+	public void abFilter(){
 		choosedomain("METROPCS");
 		cssrReport();
 		try{
@@ -219,7 +219,7 @@ public class SelectTimeRange extends Mainpage{
 		
 	}
 	//odi.623.Method for DNIS value search
-	public void dnisfilter(){
+	public void dnisFilter(){
 		choosedomain("US_AIRWAYS");
 		cssrReport();
 		try{

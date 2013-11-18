@@ -473,7 +473,7 @@ public class CallTransferReportTests extends Mainpage{
 	//or if we can also push this test name t reportFile.addtest case to update if a testcase is failed
 	public void languageFilter(){	
 		try{
-			choosedomain("FEDEX");
+			choosedomain("US_AIRWAYS");
 			transferReport();
 			WebElement Language = driver.findElement(By.id("PARAM_LOCALE"));
 			ReportFile.addTestCase("ODI6.x-692:Verify the Language filter is not missing", "ODI6.x-692:Verify the Language filter is not missing=> Pass");

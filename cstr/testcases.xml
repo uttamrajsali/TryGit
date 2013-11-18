@@ -5,16 +5,20 @@
 	</classname>
 	
 	<classname id="com.nuance.SelectTimeRange">
-		<testname>findthelables</testname>
-		<testname>abfilter</testname>
-		<testname>dnisfilter</testname>
-		<testname>numberFormat</testname>
+		<testname>search</testname>
+		<testname>findTheLables</testname>
+		<testname>abFilterSelectable</testname>
+		<testname>abFilter</testname>
+		<testname>DNISFilterNewLook</testname>
+		<testname>dnisFilter</testname>
 		<testname>cssrNumbers</testname>
-		<testname>search</testname>
+		<testname>numberFormat</testname>
+		<testname>noData</testname>
 	</classname>
 	
-	<classname id="com.nuance.Timestep">
+	<!--
+	classname id="com.nuance.Timestep">
 		<testname>search</testname>
 	</classname>
-	
+	-->
 </company>
