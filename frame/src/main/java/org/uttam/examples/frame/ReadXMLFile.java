@@ -21,10 +21,10 @@ import java.lang.reflect.Method;
 public class ReadXMLFile {
 	public static Logger logger = LoggerFactory.getLogger(Main.class);
  
-	public static void main(String args[]) {
- 
+
+	public void readXml(String xmlFile){
     try {
-	   	File fXmlFile = new File("testcases.xml");
+	   	File fXmlFile = new File(xmlFile);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(fXmlFile);
@@ -36,9 +36,9 @@ public class ReadXMLFile {
 	 		Node nNode = nList.item(temp);
 			String name=nNode.getAttributes().getNamedItem("id").getNodeValue();
 			logger.info("\nCurrent Element :" + name);
-	 		Class cls = Class.forName(name); //name is the id attribute which i have to extract from xml file
+	 		Class<?> cls = Class.forName(name); //name is the id attribute which i have to extract from xml file
 			Object obj = cls.newInstance();
-			Class noparams[] = {};
+			Class<?> noparams[] = {};
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element eElement = (Element) nNode;
 				NodeList tLists = eElement.getElementsByTagName("testname");
@@ -47,15 +47,14 @@ public class ReadXMLFile {
 			        Element node = (Element) tLists.item(j);
 			        logger.info(node.getFirstChild().getNodeValue());
 			        Method method = cls.getDeclaredMethod(node.getFirstChild().getNodeValue(), noparams);
-			        method.invoke(obj, null);
+			        method.invoke(obj);
 			    }
 			}
 		}
-	    GenerateHtml FinalRep = new GenerateHtml();
-	    FinalRep.execute();
+	    
     }catch (Exception e) {
     	logger.info("trace" + e);
-    	e.printStackTrace();
     }
+
   }
 }

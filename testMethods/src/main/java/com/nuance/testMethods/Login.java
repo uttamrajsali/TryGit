@@ -41,7 +41,6 @@ public class Login extends Mainpage{
 		pswdinput.sendKeys(password);
 		submit.click();
 		validlogin();
-		//choosedomain("US_AIRWAYS");
 	}
 	
 	
@@ -92,6 +91,8 @@ public class Login extends Mainpage{
 		x.abfilterselectable();
 		GenerateHtml FinalRep = new GenerateHtml();
         FinalRep.execute();*/
+		CallTransferReportTests y = new CallTransferReportTests();
+		y.search();
 	}
 	
 }

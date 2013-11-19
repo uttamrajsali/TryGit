@@ -26,32 +26,31 @@ public class SelectTimeRange extends Mainpage{
 	public void search(){
 		cssrReport();
 			try{
-			driver.findElement(By.id("PARAM_START_DATE")).clear();
-			removeAlert();
-			driver.findElement(By.id("PARAM_START_DATE")).sendKeys("8/11/2013");
-			driver.findElement(By.id("PARAM_END_DATE")).clear();
-			removeAlert();
-			driver.findElement(By.id("PARAM_END_DATE")).sendKeys("9/11/2013");
-			driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
-			new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
-			WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
-			WebElement rangeStart=page.findElement(By.xpath("//*[contains(text(),'8/11/2013')]"));
-			WebElement rangeEnd=page.findElement(By.xpath("//*[contains(text(),'9/11/2013')]"));
-				if(rangeStart!=null&&rangeEnd!=null)
-				{
-				logger.info("Report for selected range is showed");
-				ReportFile.addTestCase("ODI6.x-614:CSSR-Search", "ODI6.x-614:CSSR-Search => Pass");
-				}
-				else ReportFile.addTestCase("ODI6.x-614:CSSR-Search", "ODI6.x-614:CSSR-Search => Fail");
+				driver.findElement(By.id("PARAM_START_DATE")).clear();
+				removeAlert();
+				driver.findElement(By.id("PARAM_START_DATE")).sendKeys("8/11/2013");
+				driver.findElement(By.id("PARAM_END_DATE")).clear();
+				removeAlert();
+				driver.findElement(By.id("PARAM_END_DATE")).sendKeys("9/11/2013");
+				driver.findElement(By.cssSelector("input[type=\"submit\"]")).click();
+				new WebDriverWait(driver, 10).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("reportContent"));
+				WebElement page =new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.id("CrystalViewer")));
+				WebElement rangeStart=page.findElement(By.xpath("//*[contains(text(),'8/11/2013')]"));
+				WebElement rangeEnd=page.findElement(By.xpath("//*[contains(text(),'9/11/2013')]"));
+					if(rangeStart!=null&&rangeEnd!=null)
+					{
+					logger.info("Report for selected range is displayed");
+					ReportFile.addTestCase("ODI6.x-614:CSSR-Search", "ODI6.x-614:CSSR-Search => Pass");
+					}
+					else ReportFile.addTestCase("ODI6.x-614:CSSR-Search", "ODI6.x-614:CSSR-Search => Fail due to absence of rangeStart and range end Element");
 			}
 			catch (NoSuchElementException e)
 			{
-				ReportFile.addTestCase("ODI6.x-614:CSSR-Search", "ODI6.x-614:CSSR-Search => Fail");
-				logger.info("Caught NoSuchElementException:"+ e.getMessage());
+				ReportFile.addTestCase("ODI6.x-614:CSSR-Search", "ODI6.x-614:CSSR-Search => Fail due to no such element exception");
+				logger.error("error:"+ e);
 			}
 		ReportFile.WriteToFile();
 		driver.switchTo().defaultContent();
-		driver.quit();
 		gotomainpage();
 		
 	}		
@@ -66,17 +65,17 @@ public class SelectTimeRange extends Mainpage{
 		String Element7 = "Language";
 		cssrReport();
 		try{	
-			Boolean filter1= isElementpresent(Element1, By.id("date_range_label"));
-			Boolean filter2=isElementpresent(Element2, By.id("PARAM_START_DATE_label"));
-			Boolean filter3=isElementpresent(Element3, By.id("PARAM_END_DATE_label"));
-			Boolean filter4=isElementpresent(Element4, By.id("PARAM_TIME_ZONE_label"));
-			Boolean filter5=isElementpresent(Element5, By.id("PARAM_APP_ID_label"));
-			Boolean filter6=isElementpresent(Element6, By.id("PARAM_DNIS_label"));
-			Boolean filter7=isElementpresent(Element7, By.id("PARAM_LOCALE_label"));
+			Boolean filter1= isElementPresent(Element1, By.id("date_range_label"));
+			Boolean filter2=isElementPresent(Element2, By.id("PARAM_START_DATE_label"));
+			Boolean filter3=isElementPresent(Element3, By.id("PARAM_END_DATE_label"));
+			Boolean filter4=isElementPresent(Element4, By.id("PARAM_TIME_ZONE_label"));
+			Boolean filter5=isElementPresent(Element5, By.id("PARAM_APP_ID_label"));
+			Boolean filter6=isElementPresent(Element6, By.id("PARAM_DNIS_label"));
+			Boolean filter7=isElementPresent(Element7, By.id("PARAM_LOCALE_label"));
 			if(filter1 && filter2 && filter3 && filter4 && filter5 && filter6 && filter7 )
 				ReportFile.addTestCase("ODI6.x-618:Labeling of Call Stat Summary filters", "ODI6.x-618:Labeling of Call Stat Summary filters => Pass");
 			else
-				ReportFile.addTestCase("ODI6.x-618:Labeling of Call Stat Summary filters", "ODI6.x-618:Labeling of Call Stat Summary filters => Fail");
+				ReportFile.addTestCase("ODI6.x-618:Labeling of Call Stat Summary filters", "ODI6.x-618:Labeling of Call Stat Summary filters => Fail due to the absence of filter");
 		}
 		catch (Exception e)
 		{
@@ -90,7 +89,7 @@ public class SelectTimeRange extends Mainpage{
 	}
 	
 	//Method that I invoke in findlablesfilter() function 
-	public boolean isElementpresent(String name, By by){
+	public boolean isElementPresent(String name, By by){
 		try
 		{
 			if(driver.findElements(by).isEmpty())
@@ -104,7 +103,7 @@ public class SelectTimeRange extends Mainpage{
 		} 
 		catch (Exception e) 
 		{
-			logger.info("Exception" + e);
+			logger.error("Exception in isElementPresent method" + e);
 		}
 		return true;
 	}
@@ -134,13 +133,13 @@ public class SelectTimeRange extends Mainpage{
 				if(result&&selectValuesPresent)
 					ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Pass");
 				else 
-					ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Fail");
+					ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Fail due to either its not multiselectable or it was missing All, Unknown options");
 			}
-			else ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Fail");
+			else ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Fail due to absence of A/B Filter");
 		}catch(Exception e)
 		{
 			ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-62x:A/B filter: should be in the report footer => Fail");
-			logger.info("Exception" + e);
+			logger.error("Exception" + e);
 		}
 		driver.switchTo().defaultContent();
 		ReportFile.WriteToFile();
@@ -163,11 +162,12 @@ public class SelectTimeRange extends Mainpage{
 			WebElement tag=page.findElement(By.xpath("//*[contains(text(),'A/B')]"));
 			String filter = tag.getText();
 			if(filter.equals(String.format("A/B Combo ID: %s", selectText )))
-				if(tag != null)
 				{
 				logger.info(String.format("A/B Combo ID: %s", selectText )+" is present");
 				ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-620:A/B filter: should be in the report footer => Pass");
 				}
+			else
+				ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-620:A/B filter: should be in the report footer => Fail ");
 		}catch (NoSuchElementException e)
 		{
 			ReportFile.addTestCase("ODI6.x-620:A/B filter: should be in the report footer", "ODI6.x-620:A/B filter: should be in the report footer => Fail");

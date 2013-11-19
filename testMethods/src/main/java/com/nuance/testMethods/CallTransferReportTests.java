@@ -17,7 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.uttam.examples.frame.*;
 
 //CTS
 public class CallTransferReportTests extends Mainpage{
@@ -58,6 +58,7 @@ public class CallTransferReportTests extends Mainpage{
 				else
 						ReportFile.addTestCase("ODI6.x-686:CTR-GUI:Transfer Calls", "ODI6.x-686:CTR-GUI:Transfer Calls => Fail");
 			}
+		
 		}catch(NoSuchElementException e)
 		{
 			logger.info("Caught NoSuchElementException:"+ e.getMessage());
@@ -117,12 +118,11 @@ public class CallTransferReportTests extends Mainpage{
 				logger.info("Report for selected range is showed");
 				ReportFile.addTestCase("ODI6.x-689:CTR-Search", "ODI6.x-689:CTR-Search=> Pass");
 				}
-			ReportFile = new WriteXmlFile();
 			}
 			catch (NoSuchElementException e)
 			{
+				logger.error("error:",e);
 				ReportFile.addTestCase("ODI6.x-689:CTR-Search", "ODI6.x-689:CTR-Search=> Fail");
-				
 			}
 		ReportFile.WriteToFile();
 		driver.switchTo().defaultContent();

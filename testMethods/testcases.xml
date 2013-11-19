@@ -6,15 +6,10 @@
 	
 	<classname id="com.nuance.testMethods.SelectTimeRange">
 		<testname>findthelables</testname>
-		<testname>abfilter</testname>
-		<testname>dnisfilter</testname>
-		<testname>numberFormat</testname>
-		<testname>cssrNumbers</testname>
+		</classname>
+	
+	<!--classname id="com.nuance.testMethods.Timestep">
 		<testname>search</testname>
 	</classname>
-	
-	<classname id="com.nuance.testMethods.Timestep">
-		<testname>search</testname>
-	</classname>
-	
+	-->
 </company>

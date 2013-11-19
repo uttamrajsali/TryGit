@@ -28,8 +28,8 @@ public class AppTest
         Timestep selecttest = new Timestep();
         SelectTimeRange selectcssrtest = new SelectTimeRange();
         CallTransferReportTests x = new CallTransferReportTests();
-        selectcssrtest.search();
-        //x.consistency();
+       // selectcssrtest.search();
+        x.noData();
         //Test cases begins
        // selecttest.abfilterselectable();
       //  selectcssrtest.check();

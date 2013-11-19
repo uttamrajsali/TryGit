@@ -41,7 +41,7 @@ public class GenerateHtml {
 		Transformer transformer = tFactory.newTransformer(stylesource);
 		DOMSource source = new DOMSource(document);
 		
-		StreamResult result = new StreamResult(new FileOutputStream("CSTR_Reports.html"));
+		StreamResult result = new StreamResult(new FileOutputStream("report.html"));
 		
 		transformer.transform(source, result);
 		

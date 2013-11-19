@@ -43,8 +43,6 @@ public class Mainpage {
 	
 	public Mainpage()
 	{
-		
-		
 		try {
 			//user =  new UserInfo("userinfo.xml");
 			user = new UserInfo("userInfo.properties");

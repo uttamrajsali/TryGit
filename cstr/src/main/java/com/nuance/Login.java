@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+
+
 public class Login extends Mainpage{
 
 	private static String username = null;
@@ -88,8 +90,10 @@ public class Login extends Mainpage{
 	
 		//Timestep x = new Timestep();
 		//x.filterShouldBeSelectable();
-		GenerateHtml FinalRep = new GenerateHtml();
-        FinalRep.execute();
+		/*GenerateHtml FinalRep = new GenerateHtml();
+        FinalRep.execute();*/
+        CallTransferReportTests y = new CallTransferReportTests();
+		y.noData();
 	}
 	
 }
