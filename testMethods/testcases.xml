@@ -4,15 +4,11 @@
 		<testname>execute</testname>
 	</classname>
 	
-	<classname id="com.nuance.testMethods.CallTransferReportTests">
-		<testname>ApplicationNet</testname>
-		</classname>
-	
-	<!--classname id="com.nuance.testMethods.Timestep">
-		<testname>search</testname>
-	</classname>
 	<classname id="com.nuance.testMethods.SelectTimeRange">
 		<testname>findthelables</testname>
-		</classname>
-	-->
+		<testname>noData</testname>
+		<testname>search</testname>
+		<testname>cssrNumbers</testname>
+	</classname>
+	
 </company>

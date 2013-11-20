@@ -149,3 +149,125 @@ Current Element :com.nuance.testMethods.CallTransferReportTests
 2013-11-20 10:17:11 INFO  Main:572 - Dnis_1_totalTransfer_count is:2	Dnis_2_totalTransfer_count is:0
 2013-11-20 10:17:11 INFO  Main:576 - 29:2
 2013-11-20 10:17:11 INFO  Main:579 - true
+2013-11-20 10:44:09 INFO  Main:32 - Root element :company
+2013-11-20 10:44:09 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 10:44:13 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 10:44:13 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 10:44:13 INFO  Main:28 - pass login fuction
+2013-11-20 10:44:13 INFO  Main:48 - execute
+2013-11-20 10:44:15 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.CallTransferReportTests
+2013-11-20 10:44:16 INFO  Main:48 - ApplicationNet
+2013-11-20 10:44:16 INFO  Main:572 - Dnis_1_totalTransfer_count is:2	Dnis_2_totalTransfer_count is:0
+2013-11-20 10:44:16 INFO  Main:576 - 29:2
+2013-11-20 10:44:16 INFO  Main:579 - true
+2013-11-20 10:48:36 INFO  Main:32 - Root element :company
+2013-11-20 10:48:36 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 10:48:40 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 10:48:40 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 10:48:40 INFO  Main:28 - pass login fuction
+2013-11-20 10:48:40 INFO  Main:48 - execute
+2013-11-20 10:48:42 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.CallTransferReportTests
+2013-11-20 10:48:43 INFO  Main:48 - ApplicationNet
+2013-11-20 10:48:43 INFO  Main:572 - Dnis_1_totalTransfer_count is:2	Dnis_2_totalTransfer_count is:0
+2013-11-20 10:48:43 INFO  Main:576 - 29:2
+2013-11-20 10:48:43 INFO  Main:579 - true
+2013-11-20 11:29:06 INFO  Main:32 - Root element :company
+2013-11-20 11:29:06 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 11:29:10 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 11:29:10 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 11:29:10 INFO  Main:28 - pass login fuction
+2013-11-20 11:29:10 INFO  Main:48 - execute
+2013-11-20 11:29:12 INFO  Main:38 - 
+Current Element :com.nuance.SelectTimeRange
+2013-11-20 11:29:12 INFO  Main:56 - tracejava.lang.ClassNotFoundException: com.nuance.SelectTimeRange
+2013-11-20 11:31:21 INFO  Main:56 - traceorg.xml.sax.SAXParseException; systemId: file:/C:/Users/uttamraj_sali/git/TryGit/testMethods/testcases.xml; lineNumber: 20; columnNumber: 3; The element type "classname" must be terminated by the matching end-tag "</classname>".
+2013-11-20 11:31:37 INFO  Main:32 - Root element :company
+2013-11-20 11:31:37 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 11:31:40 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 11:31:40 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 11:31:41 INFO  Main:28 - pass login fuction
+2013-11-20 11:31:41 INFO  Main:48 - execute
+2013-11-20 11:31:41 INFO  Main:56 - tracejava.lang.reflect.InvocationTargetException
+2013-11-20 11:55:02 INFO  Main:32 - Root element :company
+2013-11-20 11:55:02 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 11:55:05 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 11:55:05 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 11:55:05 INFO  Main:28 - pass login fuction
+2013-11-20 11:55:05 INFO  Main:48 - execute
+2013-11-20 11:55:07 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.SelectTimeRange
+2013-11-20 11:55:08 INFO  Main:48 - findthelables
+2013-11-20 11:55:22 INFO  Main:175 - timeout exception
+2013-11-20 11:55:27 INFO  Main:101 - TimeRange Element  is Present
+2013-11-20 11:55:27 INFO  Main:101 - StartTime Element  is Present
+2013-11-20 11:55:27 INFO  Main:101 - EndTime Element  is Present
+2013-11-20 11:55:27 INFO  Main:101 - TimeZone Element  is Present
+2013-11-20 11:55:27 INFO  Main:101 - Application Element  is Present
+2013-11-20 11:55:27 INFO  Main:101 - DNIS Element  is Present
+2013-11-20 11:55:27 INFO  Main:101 - Language Element  is Present
+2013-11-20 11:55:29 INFO  Main:48 - noData
+2013-11-20 11:55:52 INFO  Main:471 - No data was found for the selected criteria.
+2013-11-20 11:55:53 INFO  Main:48 - search
+2013-11-20 11:56:14 INFO  Main:42 - Report for selected range is displayed
+2013-11-20 11:56:15 INFO  Main:48 - cssrNumbers
+2013-11-20 11:56:28 INFO  Main:175 - timeout exception
+2013-11-20 11:56:44 INFO  Main:175 - timeout exception
+2013-11-20 11:56:58 INFO  Main:175 - timeout exception
+2013-11-20 11:57:13 INFO  Main:175 - timeout exception
+2013-11-20 11:57:27 INFO  Main:175 - timeout exception
+2013-11-20 11:57:42 INFO  Main:175 - timeout exception
+2013-11-20 11:59:11 INFO  Main:32 - Root element :company
+2013-11-20 11:59:11 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 11:59:14 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 11:59:14 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 11:59:14 INFO  Main:28 - pass login fuction
+2013-11-20 11:59:14 INFO  Main:48 - execute
+2013-11-20 11:59:17 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.SelectTimeRange
+2013-11-20 11:59:18 INFO  Main:48 - findthelables
+2013-11-20 11:59:22 INFO  Main:101 - TimeRange Element  is Present
+2013-11-20 11:59:22 INFO  Main:101 - StartTime Element  is Present
+2013-11-20 11:59:22 INFO  Main:101 - EndTime Element  is Present
+2013-11-20 11:59:22 INFO  Main:101 - TimeZone Element  is Present
+2013-11-20 11:59:22 INFO  Main:101 - Application Element  is Present
+2013-11-20 11:59:22 INFO  Main:101 - DNIS Element  is Present
+2013-11-20 11:59:22 INFO  Main:101 - Language Element  is Present
+2013-11-20 11:59:23 INFO  Main:48 - noData
+2013-11-20 11:59:42 INFO  Main:471 - No data was found for the selected criteria.
+2013-11-20 11:59:43 INFO  Main:48 - search
+2013-11-20 12:00:04 INFO  Main:42 - Report for selected range is displayed
+2013-11-20 12:00:05 INFO  Main:48 - cssrNumbers
+2013-11-20 12:00:10 INFO  Main:56 - tracejava.lang.reflect.InvocationTargetException
+2013-11-20 13:39:29 INFO  Main:56 - traceorg.xml.sax.SAXParseException; systemId: file:/C:/Users/uttamraj_sali/git/TryGit/testMethods/testcases.xml; lineNumber: 15; columnNumber: 4; The element type "company" must be terminated by the matching end-tag "</company>".
+2013-11-20 13:40:56 INFO  Main:32 - Root element :company
+2013-11-20 13:40:56 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 13:40:59 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 13:40:59 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 13:40:59 INFO  Main:28 - pass login fuction
+2013-11-20 13:40:59 INFO  Main:48 - execute
+2013-11-20 13:41:38 INFO  Main:32 - Root element :company
+2013-11-20 13:41:38 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 13:41:41 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 13:41:41 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 13:41:41 INFO  Main:28 - pass login fuction
+2013-11-20 13:41:41 INFO  Main:48 - execute
+2013-11-20 13:44:55 INFO  Main:32 - Root element :company
+2013-11-20 13:44:55 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 13:44:58 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 13:44:58 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 13:44:58 INFO  Main:28 - pass login fuction
+2013-11-20 13:44:58 INFO  Main:48 - execute
+2013-11-20 13:45:00 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.SelectTimeRange
+2013-11-20 13:45:01 INFO  Main:48 - findthelables

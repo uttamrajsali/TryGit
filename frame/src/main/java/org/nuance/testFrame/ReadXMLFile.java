@@ -53,7 +53,7 @@ public class ReadXMLFile {
 		}
 	    
     }catch (Exception e) {
-    	logger.info("trace" + e);
+    	logger.info("trace in readxml" + e);
     }
 
   }
