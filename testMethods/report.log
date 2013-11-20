@@ -66,3 +66,86 @@ Current Element :com.nuance.testMethods.SelectTimeRange
 2013-11-19 13:25:08 INFO  Main:101 - Application Element  is Present
 2013-11-19 13:25:08 INFO  Main:101 - DNIS Element  is Present
 2013-11-19 13:25:08 INFO  Main:101 - Language Element  is Present
+2013-11-19 16:00:39 INFO  Main:32 - Root element :company
+2013-11-19 16:00:39 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-19 16:00:43 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-19 16:00:43 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-19 16:00:43 INFO  Main:28 - pass login fuction
+2013-11-19 16:00:43 INFO  Main:48 - execute
+2013-11-19 16:00:43 INFO  Main:56 - tracejava.lang.reflect.InvocationTargetException
+2013-11-19 16:01:37 INFO  Main:32 - Root element :company
+2013-11-19 16:01:37 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-19 16:01:57 INFO  Main:56 - traceorg.openqa.selenium.remote.UnreachableBrowserException: Could not start a new session. Possible causes are invalid address of the remote server or browser start-up failure.
+Build info: version: '2.34.0', revision: '11cd0ef', time: '2013-08-06 17:11:28'
+System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.7.0_25'
+Driver info: driver.version: InternetExplorerDriver
+2013-11-19 16:02:18 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-19 16:02:18 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-19 16:02:18 INFO  Main:28 - pass login fuction
+2013-11-19 16:02:28 INFO  Main:32 - Root element :company
+2013-11-19 16:02:28 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-19 16:02:31 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-19 16:02:31 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-19 16:02:31 INFO  Main:28 - pass login fuction
+2013-11-19 16:02:31 INFO  Main:48 - execute
+2013-11-20 10:09:32 INFO  Main:32 - Root element :company
+2013-11-20 10:09:32 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 10:09:34 INFO  Main:56 - traceorg.openqa.selenium.remote.SessionNotFoundException: Unexpected error launching Internet Explorer. Protected Mode settings are not the same for all zones. Enable Protected Mode must be set to the same value (enabled or disabled) for all zones. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.30 seconds
+Build info: version: '2.34.0', revision: '11cd0ef', time: '2013-08-06 17:11:28'
+System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.7.0_25'
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+2013-11-20 10:09:44 INFO  Main:32 - Root element :company
+2013-11-20 10:09:44 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 10:09:46 INFO  Main:56 - traceorg.openqa.selenium.remote.SessionNotFoundException: Unexpected error launching Internet Explorer. Protected Mode settings are not the same for all zones. Enable Protected Mode must be set to the same value (enabled or disabled) for all zones. (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 1.22 seconds
+Build info: version: '2.34.0', revision: '11cd0ef', time: '2013-08-06 17:11:28'
+System info: os.name: 'Windows 7', os.arch: 'x86', os.version: '6.1', java.version: '1.7.0_25'
+Driver info: org.openqa.selenium.ie.InternetExplorerDriver
+2013-11-20 10:12:08 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 10:12:08 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 10:12:08 INFO  Main:28 - pass login fuction
+2013-11-20 10:12:27 INFO  Main:32 - Root element :company
+2013-11-20 10:12:27 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 10:12:30 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 10:12:30 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 10:12:30 INFO  Main:28 - pass login fuction
+2013-11-20 10:12:30 INFO  Main:48 - execute
+2013-11-20 10:12:32 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.CallTransferReportTests
+2013-11-20 10:12:33 INFO  Main:48 - ApplicationNet
+2013-11-20 10:12:33 INFO  Main:572 - Dnis_1_totalTransfer_count is:2	Dnis_2_totalTransfer_count is:0
+2013-11-20 10:12:33 INFO  Main:576 - 29:2
+2013-11-20 10:12:33 INFO  Main:579 - true
+2013-11-20 10:15:41 INFO  Main:32 - Root element :company
+2013-11-20 10:15:41 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 10:15:44 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 10:15:44 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 10:15:44 INFO  Main:28 - pass login fuction
+2013-11-20 10:15:44 INFO  Main:48 - execute
+2013-11-20 10:15:47 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.CallTransferReportTests
+2013-11-20 10:15:48 INFO  Main:48 - ApplicationNet
+2013-11-20 10:15:48 INFO  Main:572 - Dnis_1_totalTransfer_count is:2	Dnis_2_totalTransfer_count is:0
+2013-11-20 10:15:48 INFO  Main:576 - 29:2
+2013-11-20 10:15:48 INFO  Main:579 - true
+2013-11-20 10:17:04 INFO  Main:32 - Root element :company
+2013-11-20 10:17:04 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.Login
+2013-11-20 10:17:07 INFO  DefaultHttpClient:723 - I/O exception (java.net.SocketException) caught when processing request: Software caused connection abort: recv failed
+2013-11-20 10:17:07 INFO  DefaultHttpClient:730 - Retrying request
+2013-11-20 10:17:07 INFO  Main:28 - pass login fuction
+2013-11-20 10:17:07 INFO  Main:48 - execute
+2013-11-20 10:17:09 INFO  Main:38 - 
+Current Element :com.nuance.testMethods.CallTransferReportTests
+2013-11-20 10:17:11 INFO  Main:48 - ApplicationNet
+2013-11-20 10:17:11 INFO  Main:572 - Dnis_1_totalTransfer_count is:2	Dnis_2_totalTransfer_count is:0
+2013-11-20 10:17:11 INFO  Main:576 - 29:2
+2013-11-20 10:17:11 INFO  Main:579 - true

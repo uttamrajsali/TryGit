@@ -585,6 +585,9 @@ public class CallTransferReportTests extends Mainpage{
  	} catch (IOException ex) {
  		ex.printStackTrace();
  	}
+		ReportFile.WriteToFile();
+		driver.switchTo().defaultContent();
+		gotomainpage();	
 }
 	//703
 	public void DestinationGroupTotal(){

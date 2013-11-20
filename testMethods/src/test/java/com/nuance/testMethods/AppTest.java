@@ -1,7 +1,6 @@
 package com.nuance.testMethods;
 
-import org.uttam.examples.frame.GenerateHtml;
-import org.uttam.examples.frame.ReadXMLFile;
+import org.nuance.testFrame.*;
 
 import com.nuance.testMethods.*;
 
@@ -23,33 +22,6 @@ public class AppTest
     public AppTest( String testName )
     {
         super( testName );
-         //Login logintest = new Login();
-        //logintest.execute();
-        //Timestep selecttest = new Timestep();
-        //SelectTimeRange selectcssrtest = new SelectTimeRange();
-        //CallTransferReportTests x = new CallTransferReportTests();
-        //selectcssrtest.search();
-       // x.noData();
-        //Test cases begins
-       // selecttest.abfilterselectable();
-      //  selectcssrtest.check();
- /*       selectcssrtest.dnisfilter();
-        selectcssrtest.abfilter();
-        selectcssrtest.cssrNumbers();
-        selectcssrtest.numberFormat();
-        selecttest.Search();
-        selecttest.EnhancementFromPortal();
-        selecttest.DNISFilterNewLook();
-        selecttest.hourSelection();
-        selecttest.daySelection();
-        selecttest.weekSelection();
-        selecttest.monthSelection();*/
-        //selecttest.daySelectionSorting();
-        //selecttest.weekSelectionSorting();
-       // selecttest.monthSelectionSorting();
-       // selecttest.quarterSelectionSorting();
-        //Exporting the results to HTML
-       //selecttest.daySelectionSorting();
         ReadXMLFile xmlRead= new ReadXMLFile();
         xmlRead.readXml("testcases.xml");
         GenerateHtml FinalRep = new GenerateHtml();
