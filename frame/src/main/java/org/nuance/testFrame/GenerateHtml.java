@@ -1,4 +1,4 @@
-package org.uttam.examples.frame;
+package org.nuance.testFrame;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
